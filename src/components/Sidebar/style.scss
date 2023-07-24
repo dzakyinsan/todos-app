@@ -1,0 +1,49 @@
+.ant-layout-sider {
+  background-color: #416a59 !important;
+  border-bottom-right-radius: 80px !important;
+  margin-right: 25px;    
+
+  .ant-layout-sider-children {
+    margin: 0 10px;
+
+    .pokemon-logo {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0 30px 0;
+
+      .pokemon-img {
+        height: 100px;
+      }
+
+      .pokeball-img {
+        height: 50px;
+      }
+    }
+
+    ul {
+      background-color: #416a59 !important;
+
+      li {
+        font-weight: 600;
+        margin-bottom: 15px !important;
+
+        &:active,
+        &.ant-menu-item-selected {
+          background-color: #a9c25d !important;
+          color: #39395f;
+          font-weight: 700;
+        }
+      }
+    }
+  }
+
+  .ant-layout-sider-trigger {
+    background-color: #416a59 !important;
+    border-bottom-right-radius: 80px !important;
+    height: 100px !important;
+
+    .anticon {
+      vertical-align: -2.125em;
+    }
+  }
+}
