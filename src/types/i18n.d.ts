@@ -1,0 +1,1 @@
+declare function i18n(key: string, ...args: any[]);
