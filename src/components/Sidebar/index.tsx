@@ -45,7 +45,7 @@ const Sidebar = () => {
       </div>
       <Menu
         theme="dark"
-        defaultSelectedKeys={["1"]}
+        defaultSelectedKeys={["0"]}
         mode="inline"
         items={items}
       />

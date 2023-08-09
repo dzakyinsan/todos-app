@@ -1,21 +1,28 @@
 import { object } from "prop-types";
 import { renderRoutes } from "react-router-config";
-import { Layout as BaseLayout } from "antd";
+import { Layout as BaseLayout, Col, Row } from "antd";
 
 import Sidebar from "../Sidebar";
 import Header from "../Header";
+import './style.scss'
 
 const Layout = ({ route }: any) => {
   return (
-    <BaseLayout hasSider className="main-layout">
-      <Sidebar />
-      <BaseLayout className="layout">
-        <Header />
-        <BaseLayout.Content className="content">
-          {renderRoutes(route.routes)}
-        </BaseLayout.Content>
-      </BaseLayout>
-    </BaseLayout>
+    <>
+      <Header />
+      <Row justify={"center"}>
+        <Col span={24} xxl={16}>
+          <BaseLayout hasSider className="main-layout">
+            <Sidebar />
+            <BaseLayout className="layout">
+              <BaseLayout.Content className="content">
+                {renderRoutes(route.routes)}
+              </BaseLayout.Content>
+            </BaseLayout>
+          </BaseLayout>
+        </Col>
+      </Row>
+    </>
   );
 };
 
