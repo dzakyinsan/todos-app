@@ -13,7 +13,7 @@ const routes = () => {
       component: Layout,
       routes: [
         {
-          path: "/",
+          path: "/pokemon-list",
           exact: true,
           component: PokemonList,
         },

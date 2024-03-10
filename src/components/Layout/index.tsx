@@ -1,12 +1,21 @@
+import { useEffect } from 'react';
 import { object } from "prop-types";
 import { renderRoutes } from "react-router-config";
 import { Layout as BaseLayout, Col, Row } from "antd";
+import { useHistory } from "react-router-dom";
+
 
 import Sidebar from "../Sidebar";
 import Header from "../Header";
 import './style.scss'
 
 const Layout = ({ route }: any) => {
+  const history = useHistory();
+
+  useEffect(() => {
+    history.push('/pokemon-list')
+  },[])
+  
   return (
     <>
       <Header />
