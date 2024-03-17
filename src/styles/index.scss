@@ -1,0 +1,48 @@
+html {
+  font-family: sans-serif;
+}
+body {
+  margin: 0;
+}
+
+.d-flex {
+  display: flex;
+}
+
+$justify-types: center, space-between, start, space-around, space-evenly;
+$flex-direction-types: row, row-reverse, column, column-reverse;
+
+.w-100 {
+  width: 100%;
+}
+
+@each $type in $justify-types {
+  .justify-content-#{$type} {
+    justify-content: $type;
+  }
+}
+
+@each $type in $flex-direction-types {
+  .flex-dir-#{$type} {
+    flex-direction: $type;
+  }
+}
+
+@mixin margin-mixin($margin, $value) {
+  @if $margin {
+    margin-#{$margin}: $value;
+  } @else {
+    margin: $value;
+  }
+}
+
+@for $i from 1 through 20 {
+  .m-#{$i} {
+    @include margin-mixin(null, 1rem * $i);
+  }
+  @each $margin in top, left, bottom, right {
+    .m-#{$margin}-#{$i} {
+      @include margin-mixin($margin, 1rem * $i);
+    }
+  }
+}

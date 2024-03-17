@@ -1,6 +1,8 @@
+@import "./../../styles/variables";
+
 .ant-layout-header {
-    background: whitesmoke;
-    position: relative;
-    z-index: 3;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  background: $baseColor;
+  position: relative;
+  z-index: 33;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }

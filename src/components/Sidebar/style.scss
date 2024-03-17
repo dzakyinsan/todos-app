@@ -1,5 +1,7 @@
+@import "./../../styles/variables";
+
 .ant-layout-sider {
-  background-color: whitesmoke !important;
+  background-color: $baseColor !important;
   margin: 0 25px 10px 0;
 
   .ant-layout-sider-children {
@@ -7,7 +9,7 @@
 
     .pokemon-logo {
       position: absolute;
-      z-index: 4;
+      z-index: 44;
       top: -50px;
       display: flex;
       justify-content: center;
@@ -22,7 +24,7 @@
     }
 
     ul {
-      background-color: whitesmoke !important;
+      background-color: $baseColor !important;
       color: gray;
       margin-top: 75px;
       position: sticky;
@@ -47,10 +49,10 @@
   }
 
   .ant-layout-sider-trigger {
-    background-color: whitesmoke !important;
+    background-color: $baseColor !important;
+    color: grey !important;
     height: 100px !important;
     margin-bottom: 10px;
-    color: grey !important;
     .anticon {
       vertical-align: -2.125em;
     }

@@ -3,7 +3,7 @@ import { BarsOutlined, BugOutlined } from "@ant-design/icons";
 export const sidebarMenu = [
   {
     title: "Pokemons",
-    to: "/pokemon-list",
+    to: "/pokemons",
     icon: <BarsOutlined rev={null}/>,
   },
   {

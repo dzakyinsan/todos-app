@@ -14,41 +14,20 @@ type MenuItem = Required<MenuProps>["items"][number];
 const Sidebar = () => {
   const [collapsed, setCollapsed] = useState(false);
 
-  function getItem(
-    label: ReactNode,
-    key: Key,
-    icon?: ReactNode,
-    children?: MenuItem[]
-  ): MenuItem {
+  function getItem(label: ReactNode, key: Key, icon?: ReactNode, children?: MenuItem[]): MenuItem {
     return { key, icon, children, label } as MenuItem;
   }
 
-  const items: MenuItem[] = sidebarMenu.map((val, i) =>
-    getItem(<Link to={val.to}>{val.title}</Link>, i, val.icon)
-  );
+  const items: MenuItem[] = sidebarMenu.map((val, i) => getItem(<Link to={val.to}>{val.title}</Link>, i, val.icon));
 
   return (
-    <Sider
-      breakpoint="lg"
-      collapsible
-      collapsed={collapsed}
-      onCollapse={(value) => setCollapsed(value)}
-    >
+    <Sider breakpoint="lg" collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
       <div className="pokemon-logo">
         <Link to="/">
-          <img
-            src={collapsed ? PokeballLogo : PokemonLogo}
-            className={collapsed ? "pokeball-img" : "pokemon-img"}
-            alt="logo"
-          />
+          <img src={collapsed ? PokeballLogo : PokemonLogo} className={collapsed ? "pokeball-img" : "pokemon-img"} alt="logo" />
         </Link>
       </div>
-      <Menu
-        theme="dark"
-        defaultSelectedKeys={["0"]}
-        mode="inline"
-        items={items}
-      />
+      <Menu theme="dark" defaultSelectedKeys={["0"]} mode="inline" items={items} />
     </Sider>
   );
 };

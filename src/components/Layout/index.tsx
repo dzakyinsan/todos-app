@@ -13,7 +13,7 @@ const Layout = ({ route }: any) => {
   const history = useHistory();
 
   useEffect(() => {
-    history.push('/pokemon-list')
+    history.push('/pokemons')
   },[])
   
   return (

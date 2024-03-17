@@ -3,8 +3,6 @@ import { gql } from "@apollo/client";
 export const GET_POKEMONS = gql`
   query getPokemons(
     $name: String
-    $generationId: Int
-    $typeId: Int
     $offset: Int
     $limit: Int
   ) {
@@ -46,8 +44,8 @@ type FetchPokemonsResponse = {
   }[];
 };
 
-export type QueryPokemonsData =
-  FetchPokemonsResponse["pokemon_v2_pokemonspecies"];
+export type QueryPokemonsDatas = FetchPokemonsResponse["pokemon_v2_pokemonspecies"];
+export type QueryPokemonsData = FetchPokemonsResponse["pokemon_v2_pokemonspecies"][0];
 
 // export const useGetPokemons = (filter: QueryPokemonFilter) => {
 //   const { name, generationId, typeId, offset } = filter;

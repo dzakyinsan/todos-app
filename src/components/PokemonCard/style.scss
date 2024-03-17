@@ -1,121 +1,106 @@
 @import "./../../styles/variables";
 
-$elm-colors: (
-  undefined: $undefined,
-  bug: $bug,
-  dark: $dark,
-  dragon: $dragon,
-  electric: $electric,
-  fairy: $fairy,
-  fighting: $fighting,
-  fire: $fire,
-  flying: $flying,
-  ghost: $ghost,
-  grass: $grass,
-  ground: $ground,
-  ice: $ice,
-  normal: $normal,
-  poison: $poison,
-  psychic: $psychic,
-  rock: $rock,
-  steel: $steel,
-  water: $water,
-);
-
-@each $key, $value in $elm-colors {
+@each $key, $value in $elm-colors-2 {
   .elm-#{$key} {
     background: $value;
   }
 }
 
-.ant-card-body {
-  display: flex;
-  justify-content: space-between;
-  min-height: 150px;
-  color: white;
-  padding: 15px;
+.pokemon-list-container {
+  .ant-card {
+    height: 100%;
+    .ant-card-body {
+      overflow: hidden;
+      display: flex;
+      justify-content: space-between;
+      min-height: 150px;
+      color: white;
+      padding: 15px;
 
-  &:hover {
-    cursor: pointer;
+      &:hover {
+        cursor: pointer;
 
-    .pokeball-flat, picture {
-      transform: scale(1.2);
-    }
-  }
-  
-  &::after,
-  &::before {
-    content: none !important;
-  }
+        .pokeball-flat,
+        picture {
+          transform: scale(1.2);
+        }
+      }
 
-  picture {
-    z-index: 99;
-    transition: transform .2s;
-  }
+      &::after,
+      &::before {
+        content: none !important;
+      }
 
-  .ant-tag {
-    border-radius: 10px;
+      picture {
+        z-index: 99;
+        transition: transform 0.2s;
+      }
 
-    &.tag-id {
-      background: #e5e7eb;
-      opacity: 0.7;
-    }
-  }
+      .ant-tag {
+        border-radius: 10px;
 
-  h1 {
-    margin: 0;
-    font-size: 20px;
-    text-transform: capitalize;
-  }
+        &.tag-id {
+          background: #e5e7eb;
+          opacity: 0.7;
+        }
+      }
 
-  p {
-    margin: 0 0 3em 0;
-  }
+      h1 {
+        margin: 0;
+        font-size: 20px;
+        text-transform: capitalize;
+      }
 
-  @keyframes mymove {
-    100% {transform: rotate(360deg);}
-  }
+      p {
+        margin: 0 0 3em 0;
+      }
 
-  .pokeball-flat {
-    animation: mymove 1s;
-    position: absolute;
-    transition: transform .2s;
-    right: 3rem;
-    bottom: 1rem;
-    z-index: 0;
-    --tw-rotate: 12deg;
-    --tw-scale-x: 1.25;
-    --tw-scale-y: 1.25;
-    transform: translate(var(--tw-translate-x), var(--tw-translate-y))
-      rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y))
-      scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-    height: 60px;
-    width: 60px;
-    border-radius: 9999px;
-    background-color: hsla(0, 0%, 100%, 0.1);
+      @keyframes mymove {
+        100% {
+          transform: rotate(360deg);
+        }
+      }
 
-    &::after,
-    &::before {
-      transform: rotate(15deg);
-      border: 2px solid;
-      content: "";
-      position: absolute;
-      left: -65px;
-      top: -65px;
-      display: block;
-      height: 120px;
-      width: 120px;
-      border-radius: 9999px;
-      border-width: 40px;
-      border-color: hsla(0, 0%, 100%, 0.1);
-    }
+      .pokeball-flat {
+        animation: mymove 1s;
+        position: absolute;
+        transition: transform 0.2s;
+        right: 3rem;
+        bottom: 1rem;
+        z-index: 0;
+        --tw-rotate: 12deg;
+        --tw-scale-x: 1.25;
+        --tw-scale-y: 1.25;
+        transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+        height: 60px;
+        width: 60px;
+        border-radius: 9999px;
+        background-color: hsla(0, 0%, 100%, 0.1);
 
-    &::before {
-      clip-path: polygon(0 0, 100% 0, 100% 80px, 0 80px);
-    }
+        &::after,
+        &::before {
+          transform: rotate(15deg);
+          border: 2px solid;
+          content: "";
+          position: absolute;
+          left: -65px;
+          top: -65px;
+          display: block;
+          height: 120px;
+          width: 120px;
+          border-radius: 9999px;
+          border-width: 40px;
+          border-color: hsla(0, 0%, 100%, 0.1);
+        }
 
-    &::after {
-      clip-path: polygon(0 100px, 100% 100px, 100% 100%, 0 100%);
+        &::before {
+          clip-path: polygon(0 0, 100% 0, 100% 80px, 0 80px);
+        }
+
+        &::after {
+          clip-path: polygon(0 100px, 100% 100px, 100% 100%, 0 100%);
+        }
+      }
     }
   }
 }

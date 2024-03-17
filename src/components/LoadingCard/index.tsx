@@ -6,7 +6,7 @@ const LoadingCard = () => {
   return (
     <Row gutter={[16, 16]}>
       {LOADING_VARIABLES.map((val) => (
-        <Col xs={24} sm={12} md={12} lg={8} key={val}>
+        <Col xs={24} sm={12} md={12} lg={12} xl={8} key={val}>
           <Skeleton.Button active block size="large" />
         </Col>
       ))}
