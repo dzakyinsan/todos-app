@@ -88,9 +88,7 @@ $flex-direction-types: row, row-reverse, column, column-reverse;
       width: fit-content;
 
       .pokemon-logo {
-        top: -35px;
-        position: absolute;
-        left: 140px;
+        display: none;
       }
 
       .ant-menu {
@@ -98,7 +96,7 @@ $flex-direction-types: row, row-reverse, column, column-reverse;
         display: flex;
 
         .ant-menu-item {
-          width: 85px;
+          width: 120px;
         }
       }
     }
