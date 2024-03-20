@@ -21,7 +21,7 @@ const Sidebar = () => {
   const items: MenuItem[] = sidebarMenu.map((val, i) => getItem(<Link to={val.to}>{val.title}</Link>, i, val.icon));
 
   return (
-    <Sider breakpoint="lg" collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
+    <Sider breakpoint="lg" collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)} className="sidebar-test">
       <div className="pokemon-logo">
         <Link to="/">
           <img src={collapsed ? PokeballLogo : PokemonLogo} className={collapsed ? "pokeball-img" : "pokemon-img"} alt="logo" />

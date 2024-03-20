@@ -48,19 +48,16 @@
       position: absolute;
       left: -75px;
       transform: scale(1.1);
-      animation: pokeball 1s infinite;
+      animation: pokeball infinite 1s linear;
       cursor: pointer;
     }
 
     @keyframes pokeball {
-      0% {
+      from {
         transform: scale(1);
       }
-      80% {
+      to {
         transform: scale(1.1);
-      }
-      0% {
-        transform: scale(1.2);
       }
     }
   }

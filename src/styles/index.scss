@@ -36,13 +36,32 @@ $flex-direction-types: row, row-reverse, column, column-reverse;
   }
 }
 
+@mixin padding-mixin($padding, $value) {
+  @if $padding {
+    padding-#{$padding}: $value;
+  } @else {
+    padding: $value;
+  }
+}
+
 @for $i from 1 through 20 {
+  //margin
   .m-#{$i} {
     @include margin-mixin(null, 1rem * $i);
   }
   @each $margin in top, left, bottom, right {
     .m-#{$margin}-#{$i} {
       @include margin-mixin($margin, 1rem * $i);
+    }
+  }
+
+  //padding
+  .p-#{$i} {
+    @include padding-mixin(null, 1rem * $i);
+  }
+  @each $padding in top, left, bottom, right {
+    .p-#{$padding}-#{$i} {
+      @include padding-mixin($padding, 1rem * $i);
     }
   }
 }

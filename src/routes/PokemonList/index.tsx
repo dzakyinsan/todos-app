@@ -30,9 +30,9 @@ const PokemonList = () => {
 
   return (
     <div className="pokemon-list-container">
-      <Row gutter={[16, 16]} className="mb-2">
+      <Row className="mb-2">
         {data?.pokemon_v2_pokemonspecies.map((pokemon: QueryPokemonsData, i: any) => (
-          <Col xs={24} sm={12} md={12} lg={12} xl={8} key={i}>
+          <Col xs={24} sm={12} md={12} lg={12} xl={8} key={i} style={{ padding: "5px" }}>
             <PokemonCard {...pokemon} onClick={() => toDetail(pokemon.id)} />
             {i === data.pokemon_v2_pokemonspecies.length - 1 && (
               <Waypoint

@@ -56,7 +56,7 @@ const PokemonDetail = () => {
           </div>
         </div>
       </Col>
-      <Col md={24} lg={{ span: 10, offset: 2 }}>
+      <Col span={24} lg={{ span: 10, offset: 2 }}>
         <div className="d-flex justify-content-center flex-dir-column m-1">
           <div>
             <h1>Base Stats</h1>

@@ -1,21 +1,20 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
 import { object } from "prop-types";
 import { renderRoutes } from "react-router-config";
 import { Layout as BaseLayout, Col, Row } from "antd";
 import { useHistory } from "react-router-dom";
 
-
 import Sidebar from "../Sidebar";
 import Header from "../Header";
-import './style.scss'
+import "./style.scss";
 
 const Layout = ({ route }: any) => {
   const history = useHistory();
 
   useEffect(() => {
-    history.push('/pokemons')
-  },[])
-  
+    history.push("/pokemons");
+  }, []);
+
   return (
     <>
       <Header />
@@ -24,9 +23,7 @@ const Layout = ({ route }: any) => {
           <BaseLayout hasSider className="main-layout">
             <Sidebar />
             <BaseLayout className="layout">
-              <BaseLayout.Content className="content">
-                {renderRoutes(route.routes)}
-              </BaseLayout.Content>
+              <BaseLayout.Content className="content">{renderRoutes(route.routes)}</BaseLayout.Content>
             </BaseLayout>
           </BaseLayout>
         </Col>
