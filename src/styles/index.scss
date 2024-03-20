@@ -77,17 +77,6 @@ $flex-direction-types: row, row-reverse, column, column-reverse;
 
   .ant-layout-bottom {
     display: flex;
-
-    .pokemon-logo {
-      position: absolute;
-      top: -27px;
-      left: 39%;
-      z-index: 99;
-
-      .pokemon-img {
-        height: 70px;
-      }
-    }
   }
 
   .ant-layout-content {
