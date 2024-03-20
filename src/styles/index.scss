@@ -16,6 +16,10 @@ $flex-direction-types: row, row-reverse, column, column-reverse;
   width: 100%;
 }
 
+.h-100 {
+  height: 100%;
+}
+
 @each $type in $justify-types {
   .justify-content-#{$type} {
     justify-content: $type;
@@ -67,42 +71,22 @@ $flex-direction-types: row, row-reverse, column, column-reverse;
 }
 
 @media screen and (max-width: 575px) {
-  .ant-layout-header {
-    bottom: 0;
-    position: fixed;
-    width: 100%;
-    z-index: 99;
+  .ant-layout-sider {
+    display: none;
   }
 
-  .ant-layout-sider {
-    z-index: 99;
-    width: 0 !important;
-    max-width: 0 !important;
-    min-width: 0 !important;
-    margin: 0px;
-    position: fixed !important;
-    bottom: 0;
-    padding: 0 !important;
+  .ant-layout-bottom {
+    display: flex;
 
-    .ant-layout-sider-children {
-      width: fit-content;
+    .pokemon-logo {
+      position: absolute;
+      top: -27px;
+      left: 39%;
+      z-index: 99;
 
-      .pokemon-logo {
-        display: none;
+      .pokemon-img {
+        height: 70px;
       }
-
-      .ant-menu {
-        margin: 0 !important;
-        display: flex;
-
-        .ant-menu-item {
-          width: 120px;
-        }
-      }
-    }
-
-    .ant-layout-sider-trigger {
-      display: none;
     }
   }
 
