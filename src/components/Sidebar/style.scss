@@ -58,39 +58,3 @@
     }
   }
 }
-
-@media screen and (max-width: 575px) {
-  .ant-layout-sider {
-    z-index: 99;
-    width: 0 !important;
-    max-width: 0 !important;
-    min-width: 0 !important;
-    margin: 0px;
-    position: fixed !important;
-    bottom: 0;
-    padding: 0 !important;
-
-    .ant-layout-sider-children {
-      width: fit-content;
-
-      .pokemon-logo {
-        top: -35px;
-        position: absolute;
-        left: 140px;
-      }
-
-      .ant-menu {
-        margin: 0 !important;
-        display: flex;
-
-        .ant-menu {
-          width: 50px;
-        }
-      }
-    }
-
-    .ant-layout-sider-trigger {
-      display: none;
-    }
-  }
-}

@@ -6,12 +6,3 @@
   z-index: 33;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
-
-@media screen and (max-width: 575px) {
-  .ant-layout-header {
-    bottom: 0;
-    position: fixed;
-    width: 100%;
-    z-index: 99;
-  }
-}
