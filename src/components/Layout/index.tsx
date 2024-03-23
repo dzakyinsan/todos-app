@@ -20,13 +20,15 @@ const Layout = ({ route }: any) => {
     } else {
       localStorage.setItem("myPokemons", JSON.stringify([]));
     }
-    !location.pathname && history.push("/pokemons");
+    console.log({ location });
+
+    location.pathname === "/" && history.push("/pokemons");
   }, []);
 
   return (
     <>
       <Header />
-      <Row justify={"center"}>
+      <Row justify={"center"} className="main-content">
         <Col span={24} xxl={16}>
           <BaseLayout hasSider className="main-layout">
             <Sidebar />
