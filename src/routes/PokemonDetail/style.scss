@@ -8,9 +8,8 @@
   overflow: hidden;
 
   .pokemon-image {
-    width: 100%;
+    width: 70%;
     z-index: 22;
-    margin-left: 20%;
   }
 
   .backdrop-image {
@@ -48,7 +47,7 @@
       position: absolute;
       left: -75px;
       transform: scale(1.1);
-      animation: pokeball infinite 1s linear;
+      animation: pokeball infinite 0.7s linear;
       cursor: pointer;
     }
 
@@ -76,6 +75,51 @@
   .more-info {
     span {
       margin-bottom: 10px;
+    }
+  }
+}
+
+.ant-modal-root {
+  .ant-modal-mask {
+    background-color: rgba(0, 0, 0, 0.85);
+  }
+  .ant-modal,
+  .catch-modal {
+    .ant-modal-content {
+      background-color: transparent;
+      box-shadow: none;
+
+      .ant-modal-close {
+        top: 30px;
+        inset-inline-end: 35px;
+      }
+
+      .ant-modal-body {
+        height: 300px;
+        box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+
+        .modal-forest-bg {
+          height: inherit;
+          background-size: cover;
+          border-radius: 10px;
+
+          .pokemon-image {
+            height: 70px;
+            margin-bottom: 10px;
+          }
+
+          .text {
+            position: absolute;
+            bottom: 75px;
+            width: 260px;
+            font-family: monospace;
+
+            .ant-space-compact {
+              width: 240px;
+            }
+          }
+        }
+      }
     }
   }
 }

@@ -1,9 +1,12 @@
 import { createContext } from "react";
 
-export const initialState = {
-  count: 0
-}
+type TMainContext = {
+  state: {
+    myPokemons: any[];
+  };
+  dispatch: React.Dispatch<any>;
+};
 
-const MainContext = createContext({} as IMainContext )
+const MainContext = createContext({} as TMainContext);
 
-export default MainContext
+export default MainContext;

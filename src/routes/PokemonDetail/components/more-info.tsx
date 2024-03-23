@@ -23,11 +23,11 @@ const MoreInfo = (props: TMoreInfo) => {
     },
     {
       name: "Legendary",
-      value: isLegendary,
+      value: isLegendary ? <img src={require("./../../../assets/legendary.webp")} alt="is_legendary" height={"35px"} /> : "-",
     },
     {
       name: "Mythical",
-      value: isMythical,
+      value: isMythical ? <img src={require("./../../../assets/mythical.webp")} alt="is_legendary" height={"35px"} /> : "-",
     },
   ];
   return (

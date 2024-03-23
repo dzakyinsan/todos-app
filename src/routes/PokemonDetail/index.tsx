@@ -1,17 +1,21 @@
-import { Col, Row, Progress } from "antd";
+import { useState } from "react";
+import { Col, Row, Progress, Modal } from "antd";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import MoreInfo from "./components/more-info";
 import { GET_POKEMONS_DETAIL, QueryPokemonDetail } from "../../graphql/queries/pokemonDetail";
 import { PNG_IMAGE_ARTWORK_URL } from "../../constant/image";
 import Pokeball from "./../../assets/pokeball-logo-2.png";
+import { TModal } from "../../types/global";
 
 import "./style.scss";
+import ModalContent from "./components/modal-content";
 
 type TPokemonStat = QueryPokemonDetail["pokemon_v2_pokemons"][0]["pokemon_v2_pokemonstats"][0];
 
 const PokemonDetail = () => {
   const { id } = useParams<any>();
+  const [modal, setModal] = useState<TModal>();
 
   const { data, fetchMore, loading } = useQuery(GET_POKEMONS_DETAIL, {
     variables: { id },
@@ -34,20 +38,34 @@ const PokemonDetail = () => {
 
   const pngSrcAlt = `${PNG_IMAGE_ARTWORK_URL}/${name}.png`;
 
+  function onCloseModal() {
+    setModal({ open: false });
+  }
+
+  function onOpenModal() {
+    setModal({
+      title: "",
+      className: "catch-modal",
+      contentTemplate: <ModalContent data={data?.pokemon_v2_pokemonspecies[0]} onCancel={onCloseModal} />,
+      open: true,
+      onCancel: onCloseModal,
+    });
+  }
+
   return loading ? (
     <div>loading...</div>
   ) : (
     <Row className={`card-detail elm-${pokemonTypes[0]?.pokemon_v2_type?.name}`}>
-      <Col md={24} lg={12}>
+      <Col md={24} lg={12} className="d-flex justify-content-center">
         <img src={require(`./../../assets/icons/${pokemonTypes[0]?.pokemon_v2_type?.name}.svg`)} alt="backdrop" className="backdrop-image" />
         <div className="d-flex justify-content-center flex-dir-column m-1">
           <span className="pokemon-id">{`#${pokemonId}`}</span>
           <div className="d-flex justify-content-center">
-            <img src={pngSrcAlt} alt={data?.pokemon_v2_pokemonspecies[0]?.name} className="pokemon-image" />
+            <img src={pngSrcAlt} alt={name} className="pokemon-image" />
           </div>
           <div className="d-flex justify-content-center m-2 w-100">
             <span className="name-tag">
-              <img src={Pokeball} alt="pokeball-img" />
+              <img src={Pokeball} alt="pokeball-img" onClick={onOpenModal} />
               {name}
             </span>
             {pokemonTypes?.map(({ pokemon_v2_type }: any, i: number) => (
@@ -56,7 +74,7 @@ const PokemonDetail = () => {
           </div>
         </div>
       </Col>
-      <Col span={24} lg={{ span: 10, offset: 2 }}>
+      <Col span={24} lg={{ span: 11, offset: 1 }}>
         <div className="d-flex justify-content-center flex-dir-column m-1">
           <div>
             <h1>Base Stats</h1>
@@ -75,6 +93,9 @@ const PokemonDetail = () => {
           </div>
         </div>
       </Col>
+      <Modal {...modal} footer={null}>
+        {modal?.contentTemplate}
+      </Modal>
     </Row>
   );
 };

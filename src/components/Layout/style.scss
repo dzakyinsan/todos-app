@@ -1,10 +1,8 @@
 @import "./../../styles/variables";
 
 .ant-row {
-  background: $baseColor;
-
   .ant-layout {
-    background: $baseColor;
+    background: $baseColorDark;
     min-height: 100vh;
   }
 }

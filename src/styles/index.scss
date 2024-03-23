@@ -1,5 +1,5 @@
-html {
-  font-family: sans-serif;
+* {
+  font-family: "Courier New", Courier, monospace;
 }
 body {
   margin: 0;
@@ -10,6 +10,7 @@ body {
 }
 
 $justify-types: center, space-between, start, space-around, space-evenly;
+$align-types: center, flex-end, flex-start;
 $flex-direction-types: row, row-reverse, column, column-reverse;
 
 .w-100 {
@@ -23,6 +24,12 @@ $flex-direction-types: row, row-reverse, column, column-reverse;
 @each $type in $justify-types {
   .justify-content-#{$type} {
     justify-content: $type;
+  }
+}
+
+@each $type in $align-types {
+  .align-items-#{$type} {
+    align-items: $type;
   }
 }
 
@@ -75,13 +82,20 @@ $flex-direction-types: row, row-reverse, column, column-reverse;
     display: none;
   }
 
-  .ant-layout-bottom {
+  .ant-navbar-bottom {
     display: flex;
   }
 
   .ant-layout-content {
     .card-detail {
       margin: 10px;
+    }
+  }
+
+  .card-detail {
+    .pokemon-image {
+      width: 50%;
+      margin: 0;
     }
   }
 }

@@ -1,18 +1,26 @@
-import { useEffect } from "react";
-import { object } from "prop-types";
+import { useContext, useEffect } from "react";
+import { useHistory, useLocation } from "react-router-dom";
 import { renderRoutes } from "react-router-config";
 import { Layout as BaseLayout, Col, Row } from "antd";
-import { useHistory } from "react-router-dom";
+import { object } from "prop-types";
 
 import Sidebar from "../Sidebar";
 import Header from "../Header";
+import MainContext from "../../context/mainContext";
 import "./style.scss";
 
 const Layout = ({ route }: any) => {
   const history = useHistory();
+  const location = useLocation();
+  const { dispatch } = useContext(MainContext);
 
   useEffect(() => {
-    history.push("/pokemons");
+    if (localStorage.getItem("myPokemons")) {
+      dispatch({ type: "add" });
+    } else {
+      localStorage.setItem("myPokemons", JSON.stringify([]));
+    }
+    !location.pathname && history.push("/pokemons");
   }, []);
 
   return (

@@ -6,100 +6,99 @@
   }
 }
 
-.pokemon-list-container {
-  .ant-card {
-    height: 100%;
-    .ant-card-body {
-      overflow: hidden;
-      display: flex;
-      justify-content: space-between;
-      min-height: 150px;
-      color: white;
-      padding: 15px;
+.ant-card.pokemon-card {
+  height: 100%;
+  border: none;
+  .ant-card-body {
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    min-height: 150px;
+    color: white;
+    padding: 15px;
 
-      &:hover {
-        cursor: pointer;
+    &:hover {
+      cursor: pointer;
 
-        .pokeball-flat,
-        picture {
-          transform: scale(1.2);
-        }
+      .pokeball-flat,
+      picture {
+        transform: scale(1.2);
       }
+    }
+
+    &::after,
+    &::before {
+      content: none !important;
+    }
+
+    picture {
+      z-index: 77;
+      transition: transform 0.2s;
+    }
+
+    .ant-tag {
+      border-radius: 10px;
+
+      &.tag-id {
+        background: #e5e7eb;
+        opacity: 0.7;
+      }
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 20px;
+      text-transform: capitalize;
+    }
+
+    p {
+      margin: 0 0 3em 0;
+    }
+
+    @keyframes mymove {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .pokeball-flat {
+      animation: mymove 1s;
+      position: absolute;
+      transition: transform 0.2s;
+      right: 3rem;
+      bottom: 1rem;
+      z-index: 0;
+      --tw-rotate: 12deg;
+      --tw-scale-x: 1.25;
+      --tw-scale-y: 1.25;
+      transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+      height: 60px;
+      width: 60px;
+      border-radius: 9999px;
+      background-color: hsla(0, 0%, 100%, 0.1);
 
       &::after,
       &::before {
-        content: none !important;
-      }
-
-      picture {
-        z-index: 77;
-        transition: transform 0.2s;
-      }
-
-      .ant-tag {
-        border-radius: 10px;
-
-        &.tag-id {
-          background: #e5e7eb;
-          opacity: 0.7;
-        }
-      }
-
-      h1 {
-        margin: 0;
-        font-size: 20px;
-        text-transform: capitalize;
-      }
-
-      p {
-        margin: 0 0 3em 0;
-      }
-
-      @keyframes mymove {
-        100% {
-          transform: rotate(360deg);
-        }
-      }
-
-      .pokeball-flat {
-        animation: mymove 1s;
+        transform: rotate(15deg);
+        border: 2px solid;
+        content: "";
         position: absolute;
-        transition: transform 0.2s;
-        right: 3rem;
-        bottom: 1rem;
-        z-index: 0;
-        --tw-rotate: 12deg;
-        --tw-scale-x: 1.25;
-        --tw-scale-y: 1.25;
-        transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-        height: 60px;
-        width: 60px;
+        left: -65px;
+        top: -65px;
+        display: block;
+        height: 120px;
+        width: 120px;
         border-radius: 9999px;
-        background-color: hsla(0, 0%, 100%, 0.1);
+        border-width: 40px;
+        border-color: hsla(0, 0%, 100%, 0.1);
+      }
 
-        &::after,
-        &::before {
-          transform: rotate(15deg);
-          border: 2px solid;
-          content: "";
-          position: absolute;
-          left: -65px;
-          top: -65px;
-          display: block;
-          height: 120px;
-          width: 120px;
-          border-radius: 9999px;
-          border-width: 40px;
-          border-color: hsla(0, 0%, 100%, 0.1);
-        }
+      &::before {
+        clip-path: polygon(0 0, 100% 0, 100% 80px, 0 80px);
+      }
 
-        &::before {
-          clip-path: polygon(0 0, 100% 0, 100% 80px, 0 80px);
-        }
-
-        &::after {
-          clip-path: polygon(0 100px, 100% 100px, 100% 100%, 0 100%);
-        }
+      &::after {
+        clip-path: polygon(0 100px, 100% 100px, 100% 100%, 0 100%);
       }
     }
   }

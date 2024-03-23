@@ -41,7 +41,7 @@ const Sidebar = () => {
         {renderLogo()}
         <Menu theme="dark" defaultSelectedKeys={["0"]} mode="inline" items={items} />
       </Sider>
-      <div className="ant-layout-bottom">
+      <div className="ant-navbar-bottom">
         {renderLogo()}
         {sidebarMenu?.map((val) => (
           <div key={val.title} className="w-100" style={{ padding: "10px" }}>

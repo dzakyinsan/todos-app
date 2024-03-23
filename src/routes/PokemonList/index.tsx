@@ -1,4 +1,4 @@
-import { Col, Row } from "antd";
+import { Col, Row, Input } from "antd";
 import { Waypoint } from "react-waypoint";
 import { useHistory } from "react-router-dom";
 import { useQuery } from "@apollo/client";
@@ -6,20 +6,16 @@ import { useQuery } from "@apollo/client";
 import { QueryPokemonsData, GET_POKEMONS } from "../../graphql/queries/pokemonList";
 import PokemonCard from "../../components/PokemonCard";
 import LoadingCard from "../../components/LoadingCard";
+import { INITIAL_FILTER } from "../../constant/variables";
+import { SearchProps } from "antd/es/input/Search";
 
 import "./style.scss";
 
-const INITIAL_FILTER = {
-  name: "",
-  generationId: 0,
-  typeId: 0,
-  limit: 30,
-  offset: 0,
-};
+const { Search } = Input;
 
 const PokemonList = () => {
   const history = useHistory();
-  const { data, fetchMore, loading } = useQuery(GET_POKEMONS, {
+  const { data, fetchMore, loading, refetch, error } = useQuery(GET_POKEMONS, {
     variables: INITIAL_FILTER,
     notifyOnNetworkStatusChange: true,
   });
@@ -28,8 +24,15 @@ const PokemonList = () => {
     history.push(`/pokemons/${id}`);
   }
 
+  const onSearch: SearchProps["onSearch"] = (value) => {
+    refetch({
+      name: value,
+    });
+  };
+
   return (
     <div className="pokemon-list-container">
+      <Search className="m-bottom-1" placeholder="Search pokemon" onSearch={onSearch} size="large" />
       <Row className="mb-2">
         {data?.pokemon_v2_pokemonspecies.map((pokemon: QueryPokemonsData, i: any) => (
           <Col xs={24} sm={12} md={12} lg={12} xl={8} key={i} style={{ padding: "5px" }}>

@@ -1,7 +1,7 @@
 @import "./../../styles/variables";
 
 .ant-layout-sider {
-  background-color: $baseColor !important;
+  background-color: $baseColorDark !important;
   margin: 0 25px 10px 0;
 
   .ant-layout-sider-children {
@@ -24,7 +24,7 @@
     }
 
     ul {
-      background-color: $baseColor !important;
+      background-color: $baseColorDark !important;
       color: gray;
       margin-top: 75px;
       position: sticky;
@@ -49,7 +49,7 @@
   }
 
   .ant-layout-sider-trigger {
-    background-color: $baseColor !important;
+    background-color: $baseColorDark !important;
     color: grey !important;
     height: 100px !important;
     margin-bottom: 10px;
@@ -59,14 +59,14 @@
   }
 }
 
-.ant-layout-bottom {
+.ant-navbar-bottom {
   display: none;
   position: fixed;
   width: 100%;
   height: 60px;
   bottom: 0;
   z-index: 98;
-  background: $baseColor;
+  background: $baseColorDark;
 
   .pokemon-logo {
     position: absolute;
@@ -81,10 +81,18 @@
 
   .ant-btn-primary {
     background: $tab-bg;
-    color: $tab-clr;
+    color: $baseColorDark;
 
     &:hover {
+      color: $baseColorDark;
       background: $tab-bg !important;
+    }
+  }
+
+  .ant-btn-text {
+    color: $baseColor;
+    &:hover {
+      color: $baseColor;
     }
   }
 }
