@@ -32,6 +32,7 @@ const PokemonList = () => {
 
   return (
     <div className="pokemon-list-container">
+      <h3 style={{ color: "white" }}>Pokemon list</h3>
       <Search className="m-bottom-1" placeholder="Search pokemon" onSearch={onSearch} size="large" />
       <Row className="mb-2">
         {data?.pokemon_v2_pokemonspecies.map((pokemon: QueryPokemonsData, i: any) => (

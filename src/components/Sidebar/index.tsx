@@ -21,7 +21,9 @@ const Sidebar = () => {
     return { key, icon, children, label } as MenuItem;
   }
 
-  const items: MenuItem[] = sidebarMenu.map((val, i) => getItem(<Link to={val.to}>{val.title}</Link>, i, val.icon));
+  const items: MenuItem[] = sidebarMenu.map((val, i) => getItem(<Link to={val.to}>{val.title}</Link>, val.to, val.icon));
+
+  const selectedKey: any = sidebarMenu.find((val) => val.to === pathname) || {};
 
   function onSelectBottomTab(to: string) {
     push(to);
@@ -39,7 +41,7 @@ const Sidebar = () => {
     <>
       <Sider breakpoint="lg" collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)} className="sidebar-test">
         {renderLogo()}
-        <Menu theme="dark" defaultSelectedKeys={["0"]} mode="inline" items={items} />
+        <Menu theme="dark" defaultSelectedKeys={[pathname]} selectedKeys={[selectedKey.to]} mode="inline" items={items} />
       </Sider>
       <div className="ant-navbar-bottom">
         {renderLogo()}

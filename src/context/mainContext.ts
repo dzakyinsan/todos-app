@@ -1,9 +1,8 @@
 import { createContext } from "react";
+import { TState } from "../reducer/mainReducer";
 
 type TMainContext = {
-  state: {
-    myPokemons: any[];
-  };
+  state: TState;
   dispatch: React.Dispatch<any>;
 };
 

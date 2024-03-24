@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Button, Input, Space, message } from "antd";
 import { useHistory } from "react-router-dom";
 import { PNG_IMAGE_LITTLE } from "../../../constant/image";
@@ -18,9 +18,9 @@ type TStage = "desc" | "success" | "failed";
 
 const ModalContent = (props: IModalContent) => {
   const { data, onCancel } = props;
-  const { state, dispatch } = useContext(MainContext);
   const [messageApi, contextHolder] = message.useMessage();
   const { push } = useHistory();
+  const { state, dispatch } = useContext(MainContext);
   const [stage, setStage] = useState<TStage>("desc");
   const [loading, setLoading] = useState(false);
   const [pokemonName, setPokemonName] = useState("");
@@ -61,15 +61,19 @@ const ModalContent = (props: IModalContent) => {
   }
 
   function onSave() {
-    dispatch({
-      type: "add",
-      payload: {
-        ...data,
-        givenName: pokemonName,
-      },
-    });
-    push("/my-pokemons");
-    onCancel();
+    const isUniq = state.myPokemons?.find((val: any) => val.nickname === pokemonName) || {};
+    if (isUniq?.nickname) {
+      popMessage("error", "nama sudah terdaftar");
+    } else {
+      dispatch({
+        type: "add",
+        payload: {
+          ...data,
+          nickname: pokemonName,
+        },
+      });
+      push("/my-pokemons");
+    }
   }
 
   function renderContent() {
