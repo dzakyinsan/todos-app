@@ -77,6 +77,19 @@
       margin-bottom: 10px;
     }
   }
+
+  .evolution-card {
+    color: white;
+    border: none;
+    margin: 5px;
+    min-width: 150px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .anticon-arrow-right {
+    font-size: 35px !important;
+  }
 }
 
 .ant-modal-root {

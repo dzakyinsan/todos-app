@@ -7,7 +7,7 @@ type TMoreInfo = {
 };
 
 const MoreInfo = (props: TMoreInfo) => {
-  const { habitat, generation, isLegendary, isMythical, captureRate } = props;
+  const { habitat = "", generation, isLegendary, isMythical, captureRate } = props;
   const dataMore = [
     {
       name: "Habitat",

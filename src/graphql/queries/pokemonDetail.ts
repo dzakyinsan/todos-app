@@ -28,8 +28,9 @@ export const GET_POKEMONS_DETAIL = gql`
       is_mythical
       is_legendary
       pokemon_v2_evolutionchain {
-        pokemon_v2_pokemonspecies(where: { _not: { id: { _eq: $id } } }) {
+        pokemon_v2_pokemonspecies(order_by: { id: asc }) {
           name
+          id
         }
       }
     }

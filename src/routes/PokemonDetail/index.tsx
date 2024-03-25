@@ -1,7 +1,9 @@
 import { useState } from "react";
-import { Col, Row, Progress, Modal } from "antd";
-import { useParams } from "react-router-dom";
+import { Col, Row, Progress, Modal, Card } from "antd";
+import { useParams, useHistory } from "react-router-dom";
 import { useQuery } from "@apollo/client";
+import { ArrowRightOutlined } from "@ant-design/icons";
+
 import MoreInfo from "./components/more-info";
 import { GET_POKEMONS_DETAIL, QueryPokemonDetail } from "../../graphql/queries/pokemonDetail";
 import { PNG_IMAGE_ARTWORK_URL } from "../../constant/image";
@@ -16,6 +18,7 @@ type TPokemonStat = QueryPokemonDetail["pokemon_v2_pokemons"][0]["pokemon_v2_pok
 const PokemonDetail = () => {
   const { id } = useParams<any>();
   const [modal, setModal] = useState<TModal>();
+  const { push } = useHistory();
 
   const { data, fetchMore, loading } = useQuery(GET_POKEMONS_DETAIL, {
     variables: { id },
@@ -35,7 +38,7 @@ const PokemonDetail = () => {
   } = data?.pokemon_v2_pokemonspecies[0] || {};
 
   const pokemonTypes = (data && pokemon_v2_pokemons[0]?.pokemon_v2_pokemontypes) || [];
-
+  const pokemonEvolution = pokemon_v2_evolutionchain?.pokemon_v2_pokemonspecies || [];
   const pngSrcAlt = `${PNG_IMAGE_ARTWORK_URL}/${name}.png`;
 
   function onCloseModal() {
@@ -55,7 +58,7 @@ const PokemonDetail = () => {
   return loading ? (
     <div>loading...</div>
   ) : (
-    <>
+    <div className="m-bottom-5">
       <Row className={`card-detail elm-${pokemonTypes[0]?.pokemon_v2_type?.name}`}>
         <Col md={24} lg={12} className="d-flex justify-content-center">
           <img src={require(`./../../assets/icons/${pokemonTypes[0]?.pokemon_v2_type?.name}.svg`)} alt="backdrop" className="backdrop-image" />
@@ -90,7 +93,7 @@ const PokemonDetail = () => {
           <div className="d-flex justify-content-center flex-dir-column m-1">
             <div>
               <h1>More Info</h1>
-              <MoreInfo habitat={pokemon_v2_pokemonhabitat.name} generation={pokemon_v2_generation.name} isLegendary={is_legendary} isMythical={is_mythical} captureRate={capture_rate} />
+              <MoreInfo habitat={pokemon_v2_pokemonhabitat?.name} generation={pokemon_v2_generation?.name} isLegendary={is_legendary} isMythical={is_mythical} captureRate={capture_rate} />
             </div>
           </div>
         </Col>
@@ -98,7 +101,27 @@ const PokemonDetail = () => {
           {modal?.contentTemplate}
         </Modal>
       </Row>
-    </>
+
+      <Row className="card-detail">
+        {pokemonEvolution?.map((val: any, i: number) => {
+          const pngSrc = `${PNG_IMAGE_ARTWORK_URL}/${val.name}.png`;
+
+          return (
+            <Col className="d-flex">
+              <Card className={`evolution-card elm-${pokemonTypes[0]?.pokemon_v2_type?.name}`} onClick={() => push(`/pokemons/${val.id}`)}>
+                <img src={pngSrc} alt={val.name} height="80px" />
+                <p>{val.name}</p>
+              </Card>
+              {i !== pokemonEvolution.length - 1 && (
+                <div className="d-flex justify-content-center align-items-center m-1">
+                  <ArrowRightOutlined rev={null} height="10px" />
+                </div>
+              )}
+            </Col>
+          );
+        })}
+      </Row>
+    </div>
   );
 };
 
