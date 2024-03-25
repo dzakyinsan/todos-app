@@ -2,6 +2,7 @@ import { useContext } from "react";
 import MainContext from "../../context/mainContext";
 import { Col, Row } from "antd";
 import PokemonCard from "../../components/PokemonCard";
+import { renderNoData } from "../../components/LoadingCard";
 
 const MyPokemons = () => {
   const {
@@ -28,6 +29,7 @@ const MyPokemons = () => {
           </Col>
         ))}
       </Row>
+      {!myPokemons.length && renderNoData("you have no pokemon")}
     </div>
   );
 };

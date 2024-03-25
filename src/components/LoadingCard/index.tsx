@@ -1,6 +1,7 @@
 import { Col, Row, Skeleton } from "antd";
+import noPokemonImg from "./../../assets/no-pokemon.png";
 
-const LoadingCard = () => {
+export const LoadingCard = () => {
   const LOADING_VARIABLES = [1, 2, 3, 4, 5, 6];
 
   return (
@@ -14,4 +15,11 @@ const LoadingCard = () => {
   );
 };
 
-export default LoadingCard;
+export const renderNoData = (title: string) => (
+  <div className="d-flex justify-content-center align-items-center flex-dir-column" style={{ height: "50vh" }}>
+    <>
+      <img src={noPokemonImg} alt="no-data" width="100px" />
+      <h3 style={{ color: "white" }}>{title}</h3>
+    </>
+  </div>
+);

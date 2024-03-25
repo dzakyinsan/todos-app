@@ -55,48 +55,50 @@ const PokemonDetail = () => {
   return loading ? (
     <div>loading...</div>
   ) : (
-    <Row className={`card-detail elm-${pokemonTypes[0]?.pokemon_v2_type?.name}`}>
-      <Col md={24} lg={12} className="d-flex justify-content-center">
-        <img src={require(`./../../assets/icons/${pokemonTypes[0]?.pokemon_v2_type?.name}.svg`)} alt="backdrop" className="backdrop-image" />
-        <div className="d-flex justify-content-center flex-dir-column m-1">
-          <span className="pokemon-id">{`#${pokemonId}`}</span>
-          <div className="d-flex justify-content-center">
-            <img src={pngSrcAlt} alt={name} className="pokemon-image" />
+    <>
+      <Row className={`card-detail elm-${pokemonTypes[0]?.pokemon_v2_type?.name}`}>
+        <Col md={24} lg={12} className="d-flex justify-content-center">
+          <img src={require(`./../../assets/icons/${pokemonTypes[0]?.pokemon_v2_type?.name}.svg`)} alt="backdrop" className="backdrop-image" />
+          <div className="d-flex justify-content-center flex-dir-column m-1">
+            <span className="pokemon-id">{`#${pokemonId}`}</span>
+            <div className="d-flex justify-content-center">
+              <img src={pngSrcAlt} alt={name} className="pokemon-image" />
+            </div>
+            <div className="d-flex justify-content-center m-2 w-100">
+              <span className="name-tag">
+                <img src={Pokeball} alt="pokeball-img" onClick={onOpenModal} />
+                {name}
+              </span>
+              {pokemonTypes?.map(({ pokemon_v2_type }: any, i: number) => (
+                <img src={require(`./../../assets/types/${pokemon_v2_type?.name}.png`)} alt="type" height="40px" style={{ marginLeft: "5px", marginTop: "6px" }} key={i} className="types-name" />
+              ))}
+            </div>
           </div>
-          <div className="d-flex justify-content-center m-2 w-100">
-            <span className="name-tag">
-              <img src={Pokeball} alt="pokeball-img" onClick={onOpenModal} />
-              {name}
-            </span>
-            {pokemonTypes?.map(({ pokemon_v2_type }: any, i: number) => (
-              <img src={require(`./../../assets/types/${pokemon_v2_type?.name}.png`)} alt="type" height="40px" style={{ marginLeft: "5px", marginTop: "6px" }} key={i} className="types-name" />
-            ))}
+        </Col>
+        <Col span={24} lg={{ span: 11, offset: 1 }}>
+          <div className="d-flex justify-content-center flex-dir-column m-1">
+            <div>
+              <h1>Base Stats</h1>
+              {pokemon_v2_pokemons[0]?.pokemon_v2_pokemonstats?.map((val: TPokemonStat, i: number) => (
+                <div key={i} className="d-flex justify-content-space-between">
+                  <span>{val?.pokemon_v2_stat?.name.replace("-", " ")}</span>
+                  <Progress percent={val.base_stat} strokeColor={"#ffe58f"} style={{ width: "50%" }} format={(val) => <span style={{ color: "white" }}>{val}</span>} />
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </Col>
-      <Col span={24} lg={{ span: 11, offset: 1 }}>
-        <div className="d-flex justify-content-center flex-dir-column m-1">
-          <div>
-            <h1>Base Stats</h1>
-            {pokemon_v2_pokemons[0]?.pokemon_v2_pokemonstats?.map((val: TPokemonStat, i: number) => (
-              <div key={i} className="d-flex justify-content-space-between">
-                <span>{val?.pokemon_v2_stat?.name.replace("-", " ")}</span>
-                <Progress percent={val.base_stat} strokeColor={"#ffe58f"} style={{ width: "50%" }} format={(val) => <span style={{ color: "white" }}>{val}</span>} />
-              </div>
-            ))}
+          <div className="d-flex justify-content-center flex-dir-column m-1">
+            <div>
+              <h1>More Info</h1>
+              <MoreInfo habitat={pokemon_v2_pokemonhabitat.name} generation={pokemon_v2_generation.name} isLegendary={is_legendary} isMythical={is_mythical} captureRate={capture_rate} />
+            </div>
           </div>
-        </div>
-        <div className="d-flex justify-content-center flex-dir-column m-1">
-          <div>
-            <h1>More Info</h1>
-            <MoreInfo habitat={pokemon_v2_pokemonhabitat.name} generation={pokemon_v2_generation.name} isLegendary={is_legendary} isMythical={is_mythical} captureRate={capture_rate} />
-          </div>
-        </div>
-      </Col>
-      <Modal {...modal} footer={null}>
-        {modal?.contentTemplate}
-      </Modal>
-    </Row>
+        </Col>
+        <Modal {...modal} footer={null}>
+          {modal?.contentTemplate}
+        </Modal>
+      </Row>
+    </>
   );
 };
 

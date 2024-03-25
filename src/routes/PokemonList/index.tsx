@@ -1,13 +1,14 @@
 import { Col, Row, Input } from "antd";
 import { Waypoint } from "react-waypoint";
 import { useHistory } from "react-router-dom";
+import { SearchProps } from "antd/es/input/Search";
 import { useQuery } from "@apollo/client";
 
 import { QueryPokemonsData, GET_POKEMONS } from "../../graphql/queries/pokemonList";
 import PokemonCard from "../../components/PokemonCard";
-import LoadingCard from "../../components/LoadingCard";
+import { LoadingCard, renderNoData } from "../../components/LoadingCard";
 import { INITIAL_FILTER } from "../../constant/variables";
-import { SearchProps } from "antd/es/input/Search";
+import noPokemonImg from "./../../assets/no-pokemon.png";
 
 import "./style.scss";
 
@@ -58,6 +59,7 @@ const PokemonList = () => {
           </Col>
         ))}
       </Row>
+      {!data?.pokemon_v2_pokemonspecies.length && !loading && renderNoData("pokemon not found")}
       {loading && <LoadingCard />}
     </div>
   );
