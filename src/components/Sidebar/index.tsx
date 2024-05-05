@@ -2,7 +2,7 @@ import { useState, ReactNode, Key } from "react";
 import { Button, Layout, Menu, MenuProps } from "antd";
 import { Link, useLocation, useHistory } from "react-router-dom";
 
-import PokemonLogo from "./../../assets/pokemon-logo.png";
+import PokemonLogo from "./../../assets/pokemon-logo-2.png";
 import PokeballLogo from "./../../assets/pokeball-logo.png";
 import { sidebarMenu } from "./menu";
 

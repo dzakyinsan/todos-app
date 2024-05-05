@@ -28,7 +28,7 @@ const Layout = ({ route }: any) => {
     <>
       <Header />
       <Row justify={"center"} className="main-content">
-        <Col span={24} xxl={16}>
+        <Col span={24} xl={20}>
           <BaseLayout hasSider className="main-layout">
             <Sidebar />
             <BaseLayout className="layout">

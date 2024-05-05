@@ -10,23 +10,24 @@
     .pokemon-logo {
       position: absolute;
       z-index: 44;
-      top: -50px;
       display: flex;
       justify-content: center;
-
+      top: -60px;
+      
       .pokemon-img {
-        height: 100px;
+        height: 50px;
       }
-
+      
       .pokeball-img {
-        height: 65px;
+        height: 50px;
+        margin-left: 5px;
       }
     }
 
     ul {
       background-color: $baseColorDark !important;
       color: gray;
-      margin-top: 75px;
+      margin-top: 20px;
       position: sticky;
       top: 40px;
 
@@ -37,12 +38,12 @@
         &:active,
         &.ant-menu-item-selected {
           background-color: $tab-bg !important;
-          color: $tab-clr;
-          font-weight: 700;
+          color: white;
+          font-weight: 600;
         }
 
         &:hover {
-          color: $tab-clr !important;
+          color: #f7f7f7 !important;
         }
       }
     }

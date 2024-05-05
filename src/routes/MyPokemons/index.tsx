@@ -21,8 +21,7 @@ const MyPokemons = () => {
 
   return (
     <div>
-      <h3 style={{ color: "white" }}>my pokemons</h3>
-      <Row className="mb-2">
+      <Row className="m-top-2">
         {myPokemons?.map((val, i) => (
           <Col xs={24} sm={12} md={12} lg={12} xl={8} key={i} style={{ padding: "5px" }}>
             <PokemonCard {...val} onDelete={() => handleDelete(val.nickname)} />
