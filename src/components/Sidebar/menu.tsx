@@ -4,11 +4,11 @@ export const sidebarMenu = [
   {
     title: "Pokemons",
     to: "/pokemons",
-    icon: <BarsOutlined rev={null} />,
+    icon: <BarsOutlined rev={''} />,
   },
   {
     title: "My Pokemons",
     to: "/my-pokemons",
-    icon: <BugOutlined rev={null} />,
+    icon: <BugOutlined rev={''} />,
   },
 ];

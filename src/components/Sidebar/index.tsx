@@ -2,8 +2,7 @@ import { useState, ReactNode, Key } from "react";
 import { Button, Layout, Menu, MenuProps } from "antd";
 import { Link, useLocation, useHistory } from "react-router-dom";
 
-import PokemonLogo from "./../../assets/pokemon-logo-2.png";
-import PokeballLogo from "./../../assets/pokeball-logo.png";
+import DeckIcon from "./../../assets/deck-icon.webp";
 import { sidebarMenu } from "./menu";
 
 import "./style.scss";
@@ -32,7 +31,15 @@ const Sidebar = () => {
   const renderLogo = () => (
     <div className="pokemon-logo">
       <Link to="/">
-        <img src={collapsed ? PokeballLogo : PokemonLogo} className={collapsed ? "pokeball-img" : "pokemon-img"} alt="logo" />
+        <div style={{ color: 'white', fontStyle: 'italic' }}>
+          <div style={{ position: 'absolute', top: '-15px', left: '-50px' }}><img src={DeckIcon} alt='icon' height='60px' /></div>
+          {!collapsed &&
+            <>
+              <div>POKEMON</div>
+              <div><b>WORLD DECK</b></div>
+            </>
+          }
+        </div>
       </Link>
     </div>
   );
@@ -44,7 +51,6 @@ const Sidebar = () => {
         <Menu theme="dark" defaultSelectedKeys={[pathname]} selectedKeys={[selectedKey.to]} mode="inline" items={items} />
       </Sider>
       <div className="ant-navbar-bottom">
-        {renderLogo()}
         {sidebarMenu?.map((val) => (
           <div key={val.title} className="w-100" style={{ padding: "10px" }}>
             <Button type={pathname.includes(val.to) ? "primary" : "text"} className="w-100 h-100" onClick={() => onSelectBottomTab(val.to)}>

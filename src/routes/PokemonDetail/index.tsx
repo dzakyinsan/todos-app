@@ -6,7 +6,7 @@ import { ArrowRightOutlined } from "@ant-design/icons";
 
 import MoreInfo from "./components/more-info";
 import { GET_POKEMONS_DETAIL, QueryPokemonDetail } from "../../graphql/queries/pokemonDetail";
-import { PNG_IMAGE_ARTWORK_URL } from "../../constant/image";
+import { PNG_IMAGE_ARTWORK_URL } from "../../constant";
 import Pokeball from "./../../assets/pokeball-logo-2.png";
 import { TModal } from "../../types/global";
 
@@ -107,14 +107,14 @@ const PokemonDetail = () => {
           const pngSrc = `${PNG_IMAGE_ARTWORK_URL}/${val.name}.png`;
 
           return (
-            <Col className="d-flex">
+            <Col className="d-flex" key={i}>
               <Card className={`evolution-card elm-${pokemonTypes[0]?.pokemon_v2_type?.name}`} onClick={() => push(`/pokemons/${val.id}`)}>
                 <img src={pngSrc} alt={val.name} height="80px" />
                 <p>{val.name}</p>
               </Card>
               {i !== pokemonEvolution.length - 1 && (
                 <div className="d-flex justify-content-center align-items-center m-1">
-                  <ArrowRightOutlined rev={null} height="10px" />
+                  <ArrowRightOutlined rev={''} height="10px" />
                 </div>
               )}
             </Col>

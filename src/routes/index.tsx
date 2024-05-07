@@ -1,8 +1,9 @@
 import { RouteConfig } from "react-router-config";
+import Layout from "../components/Layout";
 import MyPokemons from "./MyPokemons";
 import PokemonList from "./PokemonList";
 import PokemonDetail from "./PokemonDetail";
-import Layout from "../components/Layout";
+import Home from "./Home";
 
 export interface MainRouteConfig extends Omit<RouteConfig, "routes"> {
   meta?: any;
@@ -14,6 +15,11 @@ const routes = () => {
     {
       component: Layout,
       routes: [
+        {
+          path: "/",
+          exact: true,
+          component: Home,
+        },
         {
           path: "/pokemons",
           exact: true,

@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Button, Input, Space, message } from "antd";
 import { useHistory } from "react-router-dom";
-import { PNG_IMAGE_LITTLE } from "../../../constant/image";
+import { PNG_IMAGE_LITTLE } from "../../../constant";
 import { QueryPokemonDetail } from "../../../graphql/queries/pokemonDetail";
 import ForestImage from "./../../../assets/forest-bg.webp";
 import TextBox from "./../../../assets/text-box.png";

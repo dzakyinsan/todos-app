@@ -1,6 +1,6 @@
 import { Button, Card, Tag } from "antd";
 import { QueryPokemonsData } from "../../graphql/queries/pokemonList";
-import { PNG_IMAGE_ARTWORK_URL } from "../../constant/image";
+import { PNG_IMAGE_ARTWORK_URL } from "../../constant";
 
 import "./style.scss";
 
@@ -12,7 +12,8 @@ type TPokemonCard = QueryPokemonsData & {
 
 const PokemonCard = ({ id, name, nickname = "", pokemon_v2_pokemons, pokemon_v2_generation, onClick, onDelete }: TPokemonCard) => {
   const pngSrc = `${PNG_IMAGE_ARTWORK_URL}/${name}.png`;
-  const elmType = pokemon_v2_pokemons[0].pokemon_v2_pokemontypes[0].pokemon_v2_type.name;
+  const elmType = pokemon_v2_pokemons[0]?.pokemon_v2_pokemontypes[0]?.pokemon_v2_type?.name;
+  const elmType2 = pokemon_v2_pokemons[0]?.pokemon_v2_pokemontypes[1]?.pokemon_v2_type?.name || '';
 
   function mappingTypes() {
     const arrayTypes = pokemon_v2_pokemons[0].pokemon_v2_pokemontypes.map(({ pokemon_v2_type }) => pokemon_v2_type.name);
@@ -21,7 +22,7 @@ const PokemonCard = ({ id, name, nickname = "", pokemon_v2_pokemons, pokemon_v2_
   }
 
   return (
-    <Card className={`pokemon-card elm-${elmType}`} onClick={onClick}>
+    <Card className={`pokemon-card elm-${elmType} ${elmType2}`} onClick={onClick}>
       <div>
         <h1>{nickname ? nickname : name}</h1>
         <p>{mappingTypes()}</p>

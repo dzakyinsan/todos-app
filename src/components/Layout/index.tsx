@@ -21,7 +21,6 @@ const Layout = ({ route }: any) => {
       localStorage.setItem("myPokemons", JSON.stringify([]));
     }
 
-    location.pathname === "/" && history.push("/pokemons");
   }, []);
 
   return (

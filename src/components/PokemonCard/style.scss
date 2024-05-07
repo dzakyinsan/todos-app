@@ -1,14 +1,22 @@
 @import "./../../styles/variables";
 
-@each $key, $value in $elm-colors-2 {
+@each $key, $value in $elm-colors {
   .elm-#{$key} {
-    background: $value;
+    background: radial-gradient($value, transparent);
+
+    @each $key2, $value2 in $elm-colors {
+      &.#{$key2} {
+        background: radial-gradient(ellipse at top, $value, transparent),
+            radial-gradient(ellipse at bottom, $value2, transparent);
+      }
+    }
   }
 }
 
 .ant-card.pokemon-card {
   height: 100%;
   border: none;
+  
   .ant-card-body {
     overflow: hidden;
     display: flex;

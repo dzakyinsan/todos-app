@@ -7,8 +7,7 @@ import { useQuery } from "@apollo/client";
 import { QueryPokemonsData, GET_POKEMONS } from "../../graphql/queries/pokemonList";
 import PokemonCard from "../../components/PokemonCard";
 import { LoadingCard, renderNoData } from "../../components/LoadingCard";
-import { INITIAL_FILTER } from "../../constant/variables";
-import noPokemonImg from "./../../assets/no-pokemon.png";
+import { INITIAL_FILTER } from "../../constant";
 
 import "./style.scss";
 
