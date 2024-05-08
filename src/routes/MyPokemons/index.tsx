@@ -13,9 +13,7 @@ const MyPokemons = () => {
   function handleDelete(nickname: string) {
     dispatch({
       type: "delete",
-      payload: {
-        nickname,
-      },
+      payload: nickname,
     });
   }
 

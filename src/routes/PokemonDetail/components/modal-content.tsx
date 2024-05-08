@@ -66,7 +66,7 @@ const ModalContent = (props: IModalContent) => {
       popMessage("error", "nama sudah terdaftar");
     } else {
       dispatch({
-        type: "add",
+        type: "add-pokemon",
         payload: {
           ...data,
           nickname: pokemonName,

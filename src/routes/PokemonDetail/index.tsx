@@ -56,7 +56,7 @@ const PokemonDetail = () => {
   }
 
   return loading ? (
-    <div>loading...</div>
+    <div className="d-flex justify-content-center align-items-center" style={{color: 'white', height:'100vh'}}>loading...</div>
   ) : (
     <div className="m-bottom-5">
       <Row className={`card-detail elm-${pokemonTypes[0]?.pokemon_v2_type?.name}`}>

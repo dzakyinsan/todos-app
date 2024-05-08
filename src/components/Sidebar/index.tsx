@@ -1,9 +1,10 @@
-import { useState, ReactNode, Key } from "react";
-import { Button, Layout, Menu, MenuProps } from "antd";
+import { useState, ReactNode, Key, useContext } from "react";
+import { Badge, Button, Layout, Menu, MenuProps } from "antd";
 import { Link, useLocation, useHistory } from "react-router-dom";
 
 import DeckIcon from "./../../assets/deck-icon.webp";
 import { sidebarMenu } from "./menu";
+import MainContext from "../../context/mainContext";
 
 import "./style.scss";
 
@@ -11,6 +12,7 @@ const { Sider } = Layout;
 type MenuItem = Required<MenuProps>["items"][number];
 
 const Sidebar = () => {
+  const { state } = useContext(MainContext)
   const [collapsed, setCollapsed] = useState<boolean>(false);
 
   const { pathname } = useLocation();
@@ -20,7 +22,19 @@ const Sidebar = () => {
     return { key, icon, children, label } as MenuItem;
   }
 
-  const items: MenuItem[] = sidebarMenu.map((val, i) => getItem(<Link to={val.to}>{val.title}</Link>, val.to, val.icon));
+  const items: MenuItem[] = sidebarMenu.map((val, i) =>
+    getItem(
+      <Link to={val.to}>
+        <span className="title">
+          {val.title}
+          <div className={`badge ${val.title === 'My Pokemons' && 'show'}`}>
+            <span>
+            {state.myPokemons.length}
+            </span>
+          </div>
+        </span>
+      </Link>,
+      val.to, val.icon));
 
   const selectedKey: any = sidebarMenu.find((val) => val.to === pathname) || {};
 
@@ -52,10 +66,12 @@ const Sidebar = () => {
       </Sider>
       <div className="ant-navbar-bottom">
         {sidebarMenu?.map((val) => (
-          <div key={val.title} className="w-100" style={{ padding: "10px" }}>
-            <Button type={pathname.includes(val.to) ? "primary" : "text"} className="w-100 h-100" onClick={() => onSelectBottomTab(val.to)}>
-              {val.icon}
-            </Button>
+          <div key={val.title} className="w-100 d-flex justify-content-center" style={{ padding: "10px" }}>
+            <Badge size="small" dot={(val.title === 'My Pokemons' && state.myPokemons.length > 0)}>
+              <Button type={pathname.includes(val.to) ? "primary" : "text"} className="w-100 h-100" onClick={() => onSelectBottomTab(val.to)}>
+                {val.icon}
+              </Button>
+            </Badge>
           </div>
         ))}
       </div>

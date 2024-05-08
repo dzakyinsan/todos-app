@@ -1,21 +1,23 @@
-import { useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
+import { Button, Input, Tour, TourProps } from "antd";
 import { useHistory } from "react-router-dom";
 import { Zoom, Fade, Slide } from "react-awesome-reveal";
 import { CaretDownOutlined } from "@ant-design/icons";
 import { Character_options, greetingtext } from "../../constant";
-import { Button, Input, Tour, TourProps } from "antd";
+import MainContext from "../../context/mainContext";
 
 import "./style.scss";
 
 type TProfile = {
   name: string;
-  gender: 'male' | 'female' | null
+  gender: string | null
 }
 
 const Home = () => {
   const history = useHistory();
 
-  const [isTour, setIstour] = useState<boolean>(true)
+  const { state, dispatch } = useContext(MainContext)
+
   const [step, setStep] = useState(1)
   const [profile, setProfile] = useState<TProfile>({
     name: '',
@@ -42,7 +44,7 @@ const Home = () => {
     setVisibleInput(false)
     setVisibleButton(false)
     setProfile({ name: '', gender: null })
-    setIstour(false)
+    dispatch({type: 'tour', payload: false})
   }
 
   const tourStep: TourProps['steps'] = tourContent.map(({ title, desc, target }) => (
@@ -50,7 +52,7 @@ const Home = () => {
       title,
       description: desc,
       target,
-      className:'tour-setup',
+      className: 'tour-setup',
       nextButtonProps: {
         onClick: () => {
           if (step <= 3) {
@@ -65,13 +67,15 @@ const Home = () => {
       prevButtonProps: {
         onClick: () => setStep(prev => prev - 1)
       },
-      onClose: resetTour
+      onClose: resetTour,
     }
   ))
 
   function toPokemons() {
-    if (!isTour)
+    if (!state.tour) {
+      dispatch({ type: 'add-profile', payload: profile })
       history.push(`/pokemons`);
+    }
   }
 
   function handleSelectGender(val: any) {
@@ -96,12 +100,19 @@ const Home = () => {
   }
 
   function nextValidation() {
-    if ((step === 2 && !profile.gender) || (step === 3 && !profile.name) || isTour) {
+    if ((step === 2 && !profile.gender) || (step === 3 && !profile.name) || state.tour) {
       return false
     }
 
     return true
   }
+
+  useEffect(() => {
+    if(state.profile.name) {
+      setProfile(state.profile)
+      setStep(4)
+    }
+  }, [state])
 
   return (
     <div className="home" >
@@ -135,15 +146,15 @@ const Home = () => {
           </div>
         )}
       </div>
-      {visibleButton && step === 4 && (
-        <div ref={ref4}>
+      {visibleButton && step === 4 ? (
+        <div ref={ref4} className="d-flex align-items-center" style={{ height: '100px' }}>
           <Slide direction="down">
-            <Button className="m-top-2" style={{ maxWidth: '33rem' }} onClick={toPokemons}>Dive in to Pokemon Deck World</Button>
+            <Button style={{ maxWidth: '33rem' }} onClick={toPokemons}>Dive in to Pokemon Deck World</Button>
           </Slide>
 
         </div>
-      )}
-      <Tour open={isTour} onClose={() => setIstour(false)} steps={tourStep} />
+      ) : <div style={{ height: '100px' }} />}
+      <Tour open={state.tour} onClose={() => dispatch({type:'tour', payload: false})} steps={tourStep} />
     </div>
   );
 };

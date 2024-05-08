@@ -14,11 +14,11 @@
       justify-content: center;
       top: -55px;
       left: 65px;
-            
+
       .pokemon-img {
         height: 50px;
       }
-      
+
       .pokeball-img {
         height: 50px;
         margin-left: 5px;
@@ -35,6 +35,33 @@
       li {
         font-weight: 600;
         margin-bottom: 15px !important;
+
+        .ant-menu-title-content .title {
+          align-items: center;
+          display: flex;
+          font-size: 12px;
+          justify-content: space-between;
+
+          .badge {
+            width: 15px;
+            height: 15px;
+            border-radius: 5px;
+            background: #c30706;
+            position: relative;
+            display: none;
+
+            &.show {
+              display: block;
+            }
+
+            span {
+              left: 5px;
+              top: -13px;
+              position: absolute;
+              font-size: 9px;
+            }
+          }
+        }
 
         &:active,
         &.ant-menu-item-selected {
@@ -55,6 +82,7 @@
     color: grey !important;
     height: 100px !important;
     margin-bottom: 10px;
+
     .anticon {
       vertical-align: -2.125em;
     }
@@ -93,6 +121,7 @@
 
   .ant-btn-text {
     color: $baseColor;
+
     &:hover {
       color: $baseColor;
     }

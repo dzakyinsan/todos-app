@@ -1,5 +1,4 @@
 import { useContext, useEffect } from "react";
-import { useHistory, useLocation } from "react-router-dom";
 import { renderRoutes } from "react-router-config";
 import { Layout as BaseLayout, Col, Row } from "antd";
 import { object } from "prop-types";
@@ -10,17 +9,12 @@ import MainContext from "../../context/mainContext";
 import "./style.scss";
 
 const Layout = ({ route }: any) => {
-  const history = useHistory();
-  const location = useLocation();
   const { dispatch } = useContext(MainContext);
 
   useEffect(() => {
-    if (localStorage.getItem("myPokemons")) {
-      dispatch({ type: "add" });
-    } else {
-      localStorage.setItem("myPokemons", JSON.stringify([]));
-    }
-
+    localStorage.getItem("myPokemons") ? dispatch({ type: "add-pokemon" }) : localStorage.setItem("myPokemons", JSON.stringify([]));
+    localStorage.getItem('profile') ? dispatch({ type: "add-profile" }) : localStorage.setItem("profile", JSON.stringify({}))
+    localStorage.getItem('tour') ? dispatch({ type: "tour", payload: localStorage.getItem('tour') }) : localStorage.setItem("tour", 'true')
   }, []);
 
   return (
