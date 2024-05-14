@@ -1,8 +1,8 @@
-import { useContext, useEffect, useRef, useState } from "react";
-import { Button, Input, Tour, TourProps } from "antd";
-import { useHistory } from "react-router-dom";
-import { Zoom, Fade, Slide } from "react-awesome-reveal";
 import { CaretDownOutlined } from "@ant-design/icons";
+import { Button, Input, Tour, TourProps } from "antd";
+import { useContext, useEffect, useRef, useState } from "react";
+import { Fade, Slide, Zoom } from "react-awesome-reveal";
+import { useHistory } from "react-router-dom";
 import { Character_options, greetingtext } from "../../constant";
 import MainContext from "../../context/mainContext";
 
@@ -26,7 +26,6 @@ const Home = () => {
   const [visibleInput, setVisibleInput] = useState<boolean>(false)
   const [visibleButton, setVisibleButton] = useState<boolean>(false)
 
-
   const ref1 = useRef(null);
   const ref2 = useRef(null);
   const ref3 = useRef(null);
@@ -44,7 +43,7 @@ const Home = () => {
     setVisibleInput(false)
     setVisibleButton(false)
     setProfile({ name: '', gender: null })
-    dispatch({type: 'tour', payload: false})
+    dispatch({ type: 'tour', payload: false })
   }
 
   const tourStep: TourProps['steps'] = tourContent.map(({ title, desc, target }) => (
@@ -108,7 +107,7 @@ const Home = () => {
   }
 
   useEffect(() => {
-    if(state.profile.name) {
+    if (state.profile.name) {
       setProfile(state.profile)
       setStep(4)
     }
@@ -121,7 +120,11 @@ const Home = () => {
           <Zoom>
             <div className="char-container">
               {Character_options.map((val, i) => (
-                <div className={`char-card ${profile.gender && (profile.gender === val.type) && 'selected'} ${step > 2 && profile.gender !== val.type && 'hide'}`} key={i} onClick={() => handleSelectGender(val.type)}>
+                <div
+                  key={i}
+                  onClick={() => handleSelectGender(val.type)}
+                  className={`char-card ${profile.gender && (profile.gender === val.type) && 'selected'} ${step > 2 && profile.gender !== val.type && 'hide'}`}
+                >
                   <img src={val.image} alt={val.type} height="200px" />
                 </div>
               ))}
@@ -154,7 +157,7 @@ const Home = () => {
 
         </div>
       ) : <div style={{ height: '100px' }} />}
-      <Tour open={state.tour} onClose={() => dispatch({type:'tour', payload: false})} steps={tourStep} />
+      <Tour open={state.tour} onClose={() => dispatch({ type: 'tour', payload: false })} steps={tourStep} />
     </div>
   );
 };

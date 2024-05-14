@@ -1,3 +1,5 @@
+import { Tag } from "antd";
+
 type TMoreInfo = {
   habitat: string;
   generation: string;
@@ -23,19 +25,19 @@ const MoreInfo = (props: TMoreInfo) => {
     },
     {
       name: "Legendary",
-      value: isLegendary ? <img src={require("./../../../assets/legendary.webp")} alt="is_legendary" height={"35px"} /> : "-",
+      value: isLegendary ? <Tag color="#ee292f">Legendary</Tag> : "-",
     },
     {
       name: "Mythical",
-      value: isMythical ? <img src={require("./../../../assets/mythical.webp")} alt="is_legendary" height={"35px"} /> : "-",
+      value: isMythical ? <Tag color="#f2cd5e">Mythical</Tag> : "-",
     },
   ];
   return (
     <>
       {dataMore.map((val, i) => (
-        <div className="d-flex justify-content-space-between more-info" key={i}>
+        <div className="more-info" key={i}>
           <span>{val.name}</span>
-          <span>{val.value}</span>
+          <span className="gray">{val.value}</span>
         </div>
       ))}
     </>

@@ -2,7 +2,10 @@ import { gql } from "@apollo/client";
 
 export const GET_POKEMONS_DETAIL = gql`
   query getPokemonDetail($id: Int) {
-    pokemon_v2_pokemonspecies(where: { id: { _eq: $id } }, order_by: { id: asc }) {
+    pokemon_v2_pokemonspecies(
+      where: { id: { _eq: $id } }
+      order_by: { id: asc }
+    ) {
       id
       name
       pokemon_v2_pokemons(where: { id: { _eq: $id } }) {
@@ -31,6 +34,9 @@ export const GET_POKEMONS_DETAIL = gql`
         pokemon_v2_pokemonspecies(order_by: { id: asc }) {
           name
           id
+          pokemon_v2_pokemonevolutions {
+            min_level
+          }
         }
       }
     }
@@ -66,10 +72,16 @@ type FetchPokemonsResponse = {
     pokemon_v2_evolutionchain: {
       pokemon_v2_pokemonspecies: {
         name: string;
+        id: number;
+        pokemon_v2_pokemonevolutions: {
+          min_level: number;
+        }[];
       }[];
     };
   }[];
 };
 
-export type QueryPokemonDetails = FetchPokemonsResponse["pokemon_v2_pokemonspecies"];
-export type QueryPokemonDetail = FetchPokemonsResponse["pokemon_v2_pokemonspecies"][0];
+export type QueryPokemonDetails =
+  FetchPokemonsResponse["pokemon_v2_pokemonspecies"];
+export type QueryPokemonDetail =
+  FetchPokemonsResponse["pokemon_v2_pokemonspecies"][0];

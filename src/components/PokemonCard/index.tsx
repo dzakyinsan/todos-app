@@ -1,6 +1,6 @@
 import { Button, Card, Tag } from "antd";
-import { QueryPokemonsData } from "../../graphql/queries/pokemonList";
 import { PNG_IMAGE_ARTWORK_URL } from "../../constant";
+import { QueryPokemonsData } from "../../graphql/queries/pokemonList";
 
 import "./style.scss";
 

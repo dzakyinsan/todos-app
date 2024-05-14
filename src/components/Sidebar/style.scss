@@ -98,17 +98,6 @@
   z-index: 98;
   background: $baseColorDark;
 
-  .pokemon-logo {
-    position: absolute;
-    top: -27px;
-    left: 39%;
-    z-index: 99;
-
-    .pokeball-img {
-      height: 70px;
-    }
-  }
-
   .ant-btn-primary {
     background: $tab-bg;
     color: $baseColorDark;

@@ -1,10 +1,10 @@
-import { useState, ReactNode, Key, useContext } from "react";
 import { Badge, Button, Layout, Menu, MenuProps } from "antd";
-import { Link, useLocation, useHistory } from "react-router-dom";
+import { Key, ReactNode, useContext, useState } from "react";
+import { Link, useHistory, useLocation } from "react-router-dom";
 
+import MainContext from "../../context/mainContext";
 import DeckIcon from "./../../assets/deck-icon.webp";
 import { sidebarMenu } from "./menu";
-import MainContext from "../../context/mainContext";
 
 import "./style.scss";
 
@@ -29,7 +29,7 @@ const Sidebar = () => {
           {val.title}
           <div className={`badge ${val.title === 'My Pokemons' && 'show'}`}>
             <span>
-            {state.myPokemons.length}
+              {state.myPokemons.length}
             </span>
           </div>
         </span>
@@ -65,6 +65,7 @@ const Sidebar = () => {
         <Menu theme="dark" defaultSelectedKeys={[pathname]} selectedKeys={[selectedKey.to]} mode="inline" items={items} />
       </Sider>
       <div className="ant-navbar-bottom">
+        {renderLogo()}
         {sidebarMenu?.map((val) => (
           <div key={val.title} className="w-100 d-flex justify-content-center" style={{ padding: "10px" }}>
             <Badge size="small" dot={(val.title === 'My Pokemons' && state.myPokemons.length > 0)}>
