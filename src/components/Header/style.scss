@@ -2,7 +2,13 @@
 
 .ant-layout-header {
   background: $baseHeader;
+  color: $baseColor;
   position: relative;
   z-index: 33;
   height: 80px;
+  text-transform: capitalize;
+  font-style: italic;
+  display: flex;
+  justify-content: end;
+  align-items: center;
 }
