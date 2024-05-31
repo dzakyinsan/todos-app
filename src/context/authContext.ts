@@ -1,5 +1,11 @@
 import { createContext } from "react";
+import { TAuthState } from "../types/auth";
 
-const AuthContext = createContext({} as any);
+type TAuthContext = {
+  state: TAuthState;
+  dispatch: React.Dispatch<any>;
+};
+
+const AuthContext = createContext({} as TAuthContext);
 
 export default AuthContext;

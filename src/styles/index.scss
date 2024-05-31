@@ -1,4 +1,12 @@
+@import "./variables";
+
 body {
   margin: 0;
   background-color: white;
+}
+
+@mixin center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

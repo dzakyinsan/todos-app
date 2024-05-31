@@ -11,12 +11,12 @@ export const loginAction = (dispatch: any, user: TUser) => {
 
     if (existingUser) {
       if (existingUser.password === user.password) {
-        localStorage.setItem("user", JSON.stringify(user.email));
+        localStorage.setItem("user", user.email);
         dispatch({
           type: "LOGIN",
           payload: {
             isAuthenticated: true,
-            user: { email: user.email },
+            user: user.email,
             error: "",
           },
         });
@@ -36,14 +36,15 @@ export const loginAction = (dispatch: any, user: TUser) => {
       users.push({
         email: user.email,
         password: user.password,
+        todo: [],
       });
       localStorage.setItem("users", JSON.stringify(users));
-      localStorage.setItem("user", JSON.stringify(user.email));
+      localStorage.setItem("user", user.email);
       dispatch({
         type: "LOGIN",
         payload: {
           isAuthenticated: true,
-          user: { email: user.email },
+          user: user.email,
           error: "",
         },
       });
@@ -54,7 +55,21 @@ export const loginAction = (dispatch: any, user: TUser) => {
 
 export const googleLoginAction = (dispatch: any, user: string) => {
   return new Promise((resolve, reject) => {
+    let users = JSON.parse(localStorage.getItem("users") || "[]");
+
+    const existingUser = users.find(
+      (val: { email: string }) => val.email === user
+    );
+
+    if (!existingUser) {
+      users.push({
+        email: user,
+        todo: [],
+      });
+      localStorage.setItem("users", JSON.stringify(users));
+    }
     localStorage.setItem("user", user);
+
     dispatch({ type: "GOOGLE_LOGIN", payload: user });
     resolve("login success");
   });

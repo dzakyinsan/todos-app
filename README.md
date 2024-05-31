@@ -1,15 +1,17 @@
-# TodoApp
+# Todo App
 
-Pastikan Anda telah menginstal yang berikut di mesin Anda:
+## Prerequisites
 
-- [Node.js](https://nodejs.org/) (termasuk npm)
+Make sure you have the following installed on your machine:
+
+- [Node.js](https://nodejs.org/) (includes npm)
 - [Git](https://git-scm.com/)
 
-## Memulai
+## Getting Started
 
-Ikuti langkah-langkah berikut untuk menjalankan proyek di mesin lokal Anda.
+Follow these steps to get the project up and running on your local machine.
 
-### 1. Klon Repositori
+### 1. Clone the Repository
 
 ```sh
 git clone https://github.com/dzakyinsan/todos-app

@@ -1,5 +1,12 @@
+@import "./../../styles//index.scss";
+
 .main-layout {
   min-height: 100vh;
+
+  .logo-image {
+    @include center;
+    height: 60px;
+  }
 
   aside,
   .ant-layout-sider-trigger,

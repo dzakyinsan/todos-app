@@ -23,7 +23,7 @@ export const reducer = (state: TAuthState, action: TAuthAction): any => {
       return {
         ...state,
         isAuthenticated: action.payload.isAuthenticated,
-        user: action.payload.user?.email,
+        user: action.payload.user,
       };
     case "LOGOUT":
       return {

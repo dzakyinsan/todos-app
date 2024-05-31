@@ -1,4 +1,4 @@
-import { BarsOutlined } from "@ant-design/icons";
+import { FileTextOutlined, HomeOutlined } from "@ant-design/icons";
 
 type TSidebarMenu = {
   title: string;
@@ -8,13 +8,13 @@ type TSidebarMenu = {
 
 export const sidebarMenu: TSidebarMenu[] = [
   {
-    title: "Dashbaord",
+    title: "Dashboard",
     to: "/",
-    icon: <BarsOutlined rev={""} />,
+    icon: <HomeOutlined rev={""} />,
   },
   {
     title: "Todo",
     to: "/todo",
-    icon: <BarsOutlined rev={""} />,
+    icon: <FileTextOutlined rev={""} />,
   },
 ];

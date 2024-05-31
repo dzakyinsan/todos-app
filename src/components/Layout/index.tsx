@@ -1,5 +1,5 @@
 import type { MenuProps } from "antd";
-import { Breadcrumb, Layout, Menu } from "antd";
+import { Layout, Menu } from "antd";
 import React, { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import { renderRoutes } from "react-router-config";
@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 
 import AuthContext from "../../context/authContext";
 import Header from "../Header";
+import TodoLogo from "./../../assets/todoLogo.svg";
 import { sidebarMenu } from "./menu";
 import "./style.scss";
 
@@ -57,7 +58,9 @@ const Layouts = ({ route }: any) => {
         collapsed={collapsed}
         onCollapse={(value) => setCollapsed(value)}
       >
-        <div className="demo-logo-vertical" />
+        <div className="logo-image">
+          <img src={TodoLogo} alt="logo" />
+        </div>
         <Menu
           theme="light"
           defaultSelectedKeys={["/"]}
@@ -67,11 +70,7 @@ const Layouts = ({ route }: any) => {
       </Sider>
       <Layout>
         <Header />
-        <Content style={{ margin: "0 16px" }}>
-          <Breadcrumb style={{ margin: "16px 0" }}>
-            <Breadcrumb.Item>User</Breadcrumb.Item>
-            <Breadcrumb.Item>Bill</Breadcrumb.Item>
-          </Breadcrumb>
+        <Content style={{ padding: "16px", background: "#fff" }}>
           {renderRoutes(route.routes)}
         </Content>
       </Layout>

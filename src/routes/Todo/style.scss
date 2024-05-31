@@ -1,0 +1,66 @@
+@import "./../../styles//index.scss";
+
+.add-todo-btn {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+
+  p {
+    font-size: 24px;
+  }
+
+  button {
+    @include center;
+    justify-content: space-between;
+    width: 190px;
+  }
+}
+
+.todo-modal {
+  .date-picker {
+    width: -webkit-fill-available;
+  }
+
+  .footer {
+    display: flex;
+    justify-content: end;
+    gap: 20px;
+
+    .save-btn {
+      background-color: $secondary;
+      color: $gray;
+    }
+    .cancel-btn {
+      background-color: $gray;
+      color: $secondary;
+    }
+  }
+}
+
+.todo-not-checked {
+  padding: 10px;
+
+  .todo-item {
+    border: 1px solid #f0f0f0;
+    border-radius: 20px;
+    padding: 5px 15px;
+    margin: 10px 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+
+    .ant-checkbox-wrapper span {
+      color: #4f4f4f;
+    }
+
+    .date-action {
+      font-size: 12px;
+      color: #4f4f4f;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 30px;
+    }
+  }
+}
