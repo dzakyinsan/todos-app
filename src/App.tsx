@@ -1,27 +1,26 @@
-import { useMemo, useReducer } from "react";
-import { BrowserRouter } from "react-router-dom";
+import { useEffect, useReducer } from "react";
 import { renderRoutes } from "react-router-config";
-import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import { BrowserRouter } from "react-router-dom";
 
+import AuthContext from "./context/authContext";
+import { initialState, reducer } from "./reducer/authReducer";
 import routes from "./routes";
-import { mainReducer, initialState } from "./reducer/mainReducer";
-import MainContext from "./context/mainContext";
 
 const App = () => {
-  const client = new ApolloClient({
-    uri: "https://beta.pokeapi.co/graphql/v1beta",
-    cache: new InMemoryCache(),
-  });
+  const [state, dispatch] = useReducer(reducer, initialState);
 
-  const [state, dispatch] = useReducer(mainReducer, initialState);
-  const mainContext = useMemo(() => ({ state, dispatch }), [state, dispatch]);
+  useEffect(() => {
+    const users = localStorage.getItem("users");
+    const user = localStorage.getItem("user");
+
+    !users && localStorage.setItem("users", JSON.stringify([]));
+    !user && localStorage.setItem("user", "");
+  }, []);
 
   return (
-    <ApolloProvider client={client}>
-      <MainContext.Provider value={mainContext}>
-        <BrowserRouter>{renderRoutes(routes())}</BrowserRouter>
-      </MainContext.Provider>
-    </ApolloProvider>
+    <AuthContext.Provider value={{ state, dispatch }}>
+      <BrowserRouter>{renderRoutes(routes())}</BrowserRouter>
+    </AuthContext.Provider>
   );
 };
 

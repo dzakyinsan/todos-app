@@ -1,12 +1,10 @@
-@import "./../../styles/variables";
+.main-layout {
+  min-height: 100vh;
 
-.ant-row {
-  &.main-content {
-    background: $baseColorDark;
-  }
-
-  .ant-layout {
-    background: $baseColorDark;
-    min-height: 100vh;
+  aside,
+  .ant-layout-sider-trigger,
+  .ant-layout-header {
+    background-color: white !important;
+    color: black;
   }
 }

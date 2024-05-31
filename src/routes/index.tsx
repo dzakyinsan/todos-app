@@ -1,10 +1,9 @@
 import { RouteConfig } from "react-router-config";
-import Layout from "../components/Layout";
-import MyPokemons from "./MyPokemons";
-import PokemonList from "./PokemonList";
-import PokemonDetail from "./PokemonDetail";
-import Home from "./Home";
-
+import { AccessValidator } from "../components/AccessValidator";
+import Layouts from "../components/Layout";
+import Dashboard from "./Dashboard";
+import Login from "./Login";
+import Todo from "./Todo";
 export interface MainRouteConfig extends Omit<RouteConfig, "routes"> {
   meta?: any;
   routes?: MainRouteConfig[] | undefined;
@@ -13,27 +12,30 @@ export interface MainRouteConfig extends Omit<RouteConfig, "routes"> {
 const routes = () => {
   return [
     {
-      component: Layout,
+      component: Layouts,
       routes: [
         {
           path: "/",
           exact: true,
-          component: Home,
+          render: () => (
+            <AccessValidator>
+              <Dashboard />
+            </AccessValidator>
+          ),
         },
         {
-          path: "/pokemons",
+          path: "/todo",
           exact: true,
-          component: PokemonList,
+          render: () => (
+            <AccessValidator>
+              <Todo />
+            </AccessValidator>
+          ),
         },
         {
-          path: "/pokemons/:id",
+          path: "/login",
           exact: true,
-          component: PokemonDetail,
-        },
-        {
-          path: "/my-pokemons",
-          exact: true,
-          component: MyPokemons,
+          component: Login,
         },
       ] as MainRouteConfig[],
     },
