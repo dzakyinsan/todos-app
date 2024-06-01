@@ -25,7 +25,7 @@ export const EditModal = ({ onClose, todo }: TEditModal) => {
 
   const onFinish: FormProps<FieldType>["onFinish"] = (values: FieldType) => {
     let users = JSON.parse(localStorage.getItem("users") || "[]");
-    const user = state.user;
+    const email = state.email;
 
     const formatedValues = {
       ...todo,
@@ -33,7 +33,7 @@ export const EditModal = ({ onClose, todo }: TEditModal) => {
       date: dayjs(values.date).format("DD/MM/YYYY HH:mm:ss"),
     };
 
-    editTodoAction(dispatch, formatedValues, users, user!).then((val) => {
+    editTodoAction(dispatch, formatedValues, users, email!).then((val) => {
       onClose();
     });
   };
@@ -44,10 +44,14 @@ export const EditModal = ({ onClose, todo }: TEditModal) => {
       name="basic"
       layout="vertical"
       style={{ marginTop: "30px" }}
-      onFinish={onFinish}
       autoComplete="off"
     >
-      <FormData form={form} onCancel={onClose} initialValues={todo} />
+      <FormData
+        form={form}
+        onCancel={onClose}
+        initialValues={todo}
+        onFinish={onFinish}
+      />
     </Form>
   );
 };

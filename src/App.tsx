@@ -11,10 +11,10 @@ const App = () => {
 
   useEffect(() => {
     const users = localStorage.getItem("users");
-    const user = localStorage.getItem("user");
+    const email = localStorage.getItem("email");
 
     !users && localStorage.setItem("users", JSON.stringify([]));
-    !user && localStorage.setItem("user", "");
+    !email && localStorage.setItem("email", "");
   }, []);
 
   return (

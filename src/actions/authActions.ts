@@ -11,12 +11,12 @@ export const loginAction = (dispatch: any, user: TUser) => {
 
     if (existingUser) {
       if (existingUser.password === user.password) {
-        localStorage.setItem("user", user.email);
+        localStorage.setItem("email", user.email);
         dispatch({
           type: "LOGIN",
           payload: {
             isAuthenticated: true,
-            user: user.email,
+            email: user.email,
             error: "",
           },
         });
@@ -26,7 +26,7 @@ export const loginAction = (dispatch: any, user: TUser) => {
           type: "LOGIN",
           payload: {
             isAuthenticated: false,
-            user: null,
+            email: null,
             error: "invalid password",
           },
         });
@@ -39,12 +39,12 @@ export const loginAction = (dispatch: any, user: TUser) => {
         todo: [],
       });
       localStorage.setItem("users", JSON.stringify(users));
-      localStorage.setItem("user", user.email);
+      localStorage.setItem("email", user.email);
       dispatch({
         type: "LOGIN",
         payload: {
           isAuthenticated: true,
-          user: user.email,
+          email: user.email,
           error: "",
         },
       });
@@ -68,7 +68,7 @@ export const googleLoginAction = (dispatch: any, user: string) => {
       });
       localStorage.setItem("users", JSON.stringify(users));
     }
-    localStorage.setItem("user", user);
+    localStorage.setItem("email", user);
 
     dispatch({ type: "GOOGLE_LOGIN", payload: user });
     resolve("login success");
@@ -77,6 +77,6 @@ export const googleLoginAction = (dispatch: any, user: string) => {
 
 export const logoutAction = (dispatch: any) => {
   googleLogout();
-  localStorage.removeItem("user");
+  localStorage.removeItem("email");
   dispatch({ type: "LOGOUT" });
 };

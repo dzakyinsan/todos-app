@@ -40,10 +40,10 @@ const Layouts = ({ route }: any) => {
   const [collapsed, setCollapsed] = useState(false);
 
   useEffect(() => {
-    const user = localStorage.getItem("user");
+    const email = localStorage.getItem("email");
 
-    if (user) {
-      dispatch({ type: "INITIALIZE", payload: user });
+    if (email) {
+      dispatch({ type: "INITIALIZE", payload: email });
     }
   }, []);
 
@@ -57,13 +57,14 @@ const Layouts = ({ route }: any) => {
         collapsible
         collapsed={collapsed}
         onCollapse={(value) => setCollapsed(value)}
+        className="sidebar-page"
       >
         <div className="logo-image">
-          <img src={TodoLogo} alt="logo" />
+          <img src={TodoLogo} alt="logo" height={"20px"} />
         </div>
         <Menu
           theme="light"
-          defaultSelectedKeys={["/"]}
+          defaultSelectedKeys={["/todo"]}
           mode="inline"
           items={items}
         />

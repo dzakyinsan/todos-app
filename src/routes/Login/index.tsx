@@ -15,7 +15,7 @@ function Login() {
 
   useEffect(() => {
     if (state.isAuthenticated) {
-      history.push("/");
+      history.push("/todo");
     }
   }, [state.isAuthenticated]);
 

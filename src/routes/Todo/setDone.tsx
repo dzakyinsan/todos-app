@@ -1,26 +1,23 @@
 import { Button } from "antd";
 import { Dispatch, SetStateAction, useContext } from "react";
 import {
-  deleteTodoAction,
   initializeTodoAction,
+  setDoneTodoAction,
 } from "../../actions/todoAction";
 import AuthContext from "../../context/authContext";
 import TodoContext from "../../context/todoContext";
-import { IDataTodo } from "../../types/todo";
 
-type TDeleteModal = {
-  type: boolean;
+type TSetDone = {
   onClose: () => void;
   setSelectedRowKeys: Dispatch<SetStateAction<string[]>>;
-  todo: IDataTodo;
+  selectedRowKeys: string[];
 };
 
-export const DeleteModal = ({
+export const SetDoneModal = ({
   onClose,
-  todo,
+  selectedRowKeys,
   setSelectedRowKeys,
-  type,
-}: TDeleteModal) => {
+}: TSetDone) => {
   const { dispatch } = useContext(TodoContext);
   const { state } = useContext(AuthContext);
 
@@ -28,24 +25,23 @@ export const DeleteModal = ({
     onClose();
   }
 
-  function handleDelete() {
+  function handleSetDone() {
     let users = JSON.parse(localStorage.getItem("users") || "[]");
     const email = state.email;
-    deleteTodoAction(dispatch, todo, users, email!, type).then((val) => {
-      setSelectedRowKeys((prevState) =>
-        prevState.filter((rowKey) => rowKey !== todo.key)
-      );
-      onClose();
+    setDoneTodoAction(users, email!, selectedRowKeys).then((val) => {
+      setSelectedRowKeys([]);
       initializeTodoAction(dispatch);
+      onClose();
     });
   }
+
   return (
     <div>
       <div style={{ margin: "30px 10px" }}>
-        Are you sure want to delete {todo.name} ?
+        Are you sure want to set the task to done ?
       </div>
       <div className="footer">
-        <Button className="save-btn" onClick={handleDelete}>
+        <Button className="save-btn" onClick={handleSetDone}>
           Confirm
         </Button>
         <Button className="cancel-btn" onClick={handleCancel}>

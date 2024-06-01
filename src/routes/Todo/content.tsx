@@ -1,33 +1,20 @@
-import { MoreOutlined, PlusOutlined } from "@ant-design/icons";
-import {
-  Button,
-  Card,
-  Checkbox,
-  Col,
-  Dropdown,
-  MenuProps,
-  Modal,
-  Row,
-} from "antd";
+import { PlusOutlined } from "@ant-design/icons";
+import { Button, Col, Modal, Row } from "antd";
 import { useContext, useEffect, useState } from "react";
 
 import { initializeTodoAction } from "../../actions/todoAction";
 import TodoContext from "../../context/todoContext";
 import { TModal } from "../../types/global";
-import { IDataTodo } from "../../types/todo";
+import EmptyData from "./../../assets/no-data.svg";
 import { AddModal } from "./addModal";
-import { DeleteModal } from "./deleteModal";
-import { EditModal } from "./editModal";
 import "./style.scss";
+import TodoCard from "./todoCard";
 
 const TodoContent = () => {
   const {
-    state: { data },
+    state: { data, dataChecked },
     dispatch,
   } = useContext(TodoContext);
-
-  const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
-  const [selectedTodo, setSelectedTodo] = useState<IDataTodo>({} as IDataTodo);
   const [modal, setModal] = useState<TModal>();
 
   function onCloseModal() {
@@ -45,48 +32,11 @@ const TodoContent = () => {
     });
   }
 
-  function onEditModal() {
-    setModal({
-      title: "Edit Todo",
-      className: "todo-modal",
-      contentTemplate: <EditModal onClose={onCloseModal} todo={selectedTodo} />,
-      open: true,
-      onCancel: onCloseModal,
-      width: 400,
-    });
-  }
-
-  function onDeleteModal() {
-    setModal({
-      title: "Confirm Delete",
-      className: "todo-modal",
-      contentTemplate: (
-        <DeleteModal onClose={onCloseModal} todo={selectedTodo} />
-      ),
-      open: true,
-      onCancel: onCloseModal,
-      width: 400,
-    });
-  }
-
-  const items: MenuProps["items"] = [
-    {
-      label: <div onClick={onEditModal}>Edit</div>,
-      key: "0",
-    },
-    {
-      label: <div onClick={onDeleteModal}>Delete</div>,
-      key: "1",
-    },
-    {
-      label: <div onClick={() => console.log("a")}>Create Sub Todo</div>,
-      key: "3",
-    },
-  ];
-
   useEffect(() => {
     initializeTodoAction(dispatch);
   }, []);
+
+  console.log({ data });
 
   return (
     <section>
@@ -101,36 +51,34 @@ const TodoContent = () => {
         </Button>
       </div>
 
-      <Row>
-        <Col span={12}>
-          <Card className="todo-not-checked">
-            <p>Not Checked</p>
-            {data?.map((val: IDataTodo, i: number) => {
-              return (
-                <div className="todo-item" key={i}>
-                  <Checkbox>{val.name}</Checkbox>
-                  <div className="date-action">
-                    <p>{val.date}</p>
-                    <div>
-                      <Dropdown menu={{ items }} trigger={["click"]}>
-                        <p
-                          onClick={(e) => {
-                            e.preventDefault();
-                            setSelectedTodo(val);
-                          }}
-                        >
-                          <MoreOutlined />
-                        </p>
-                      </Dropdown>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </Card>
-        </Col>
-        <Col span={12}></Col>
-      </Row>
+      {data?.length ? (
+        <Row gutter={16}>
+          <Col span={12}>
+            <TodoCard
+              title={"Not Checked"}
+              type={false}
+              data={data || []}
+              onCloseModal={onCloseModal}
+              setModal={setModal}
+              dispatch={dispatch}
+            />
+          </Col>
+          <Col span={12}>
+            <TodoCard
+              title={"Checked"}
+              type={true}
+              data={dataChecked || []}
+              onCloseModal={onCloseModal}
+              setModal={setModal}
+              dispatch={dispatch}
+            />
+          </Col>
+        </Row>
+      ) : (
+        <div className="empty-img">
+          <img src={EmptyData} alt="empty-data" />
+        </div>
+      )}
 
       <Modal {...modal} footer={null}>
         {modal?.contentTemplate}

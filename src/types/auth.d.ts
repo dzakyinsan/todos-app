@@ -5,7 +5,7 @@ export type TUser = {
 
 export type TAuthState = {
   isAuthenticated: boolean;
-  user: string | null;
+  email: string | null;
 };
 
 export type LoginAction = {

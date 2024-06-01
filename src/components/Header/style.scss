@@ -1,0 +1,31 @@
+.header-class {
+  z-index: 2;
+  padding: 10px 20px;
+  background-color: white !important;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+  .profile {
+    p {
+      font-size: 12px;
+      color: #4f4f4f;
+      margin: 10px 0 5px 0;
+    }
+    span {
+      font-size: 10px;
+      color: #828282;
+    }
+  }
+
+  .ant-badge {
+    sup {
+      bottom: 0;
+      background: #26b941;
+      right: 3px;
+      top: unset;
+    }
+  }
+
+  .ant-input-affix-wrapper {
+    background: #f1f3f4;
+  }
+}

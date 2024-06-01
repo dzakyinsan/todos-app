@@ -1,16 +1,20 @@
 export type TTodoState = {
   data: IDataTodo[] | null;
+  dataChecked: IDataTodo[] | null;
 };
 
 interface IDataTodo {
   key: string;
   name: string;
   date: string;
-  overdue: boolean;
-  children: children[];
+  isChecked: boolean;
+  isShow: boolean;
+  children: IChildren[];
+  childrenKeys: string[];
 }
 
-interface children {
-  key: number;
+interface IChildren {
+  key: string;
   name: string;
+  isChecked: boolean;
 }

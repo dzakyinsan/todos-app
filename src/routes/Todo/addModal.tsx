@@ -19,18 +19,20 @@ export const AddModal = ({ onClose }: any) => {
 
   const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
     let users = JSON.parse(localStorage.getItem("users") || "[]");
-    const user = state.user;
-    var key = "key" + Math.random().toString(16).slice(2);
+    const email = state.email;
+    const generateKey = "key" + Math.random().toString(16).slice(2);
 
     const formatedValues = {
-      key,
+      key: generateKey,
       name: values.name!,
       date: dayjs(values.date).format("DD/MM/YYYY HH:mm:ss"),
-      overdue: false,
+      isChecked: false,
+      isShow: true,
       children: [],
+      childrenKeys: [],
     };
 
-    addTodoAction(dispatch, formatedValues, users, user!).then((val) => {
+    addTodoAction(dispatch, formatedValues, users, email!).then((val) => {
       onClose();
     });
   };
@@ -41,10 +43,9 @@ export const AddModal = ({ onClose }: any) => {
       name="basic"
       layout="vertical"
       style={{ marginTop: "30px" }}
-      onFinish={onFinish}
       autoComplete="off"
     >
-      <FormData form={form} onCancel={onClose} />
+      <FormData form={form} onCancel={onClose} onFinish={onFinish} />
     </Form>
   );
 };
