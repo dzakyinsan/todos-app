@@ -65,12 +65,16 @@ const SubTodo = (props: TSubTodo) => {
         checked={type ? true : selectedRowKeys.includes(subTodoKey)}
         disabled={type}
       >
-        <Input
-          placeholder="Borderless"
-          variant="borderless"
-          defaultValue={name}
-          onChange={(e) => onEditSubTodo(e.target.value)}
-        />
+        {type ? (
+          <div>{name}</div>
+        ) : (
+          <Input
+            placeholder="Borderless"
+            variant="borderless"
+            defaultValue={name}
+            onChange={(e) => onEditSubTodo(e.target.value)}
+          />
+        )}
       </Checkbox>
       <DeleteOutlined onClick={onDeleteSubTodo} />
     </div>

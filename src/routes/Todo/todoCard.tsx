@@ -175,7 +175,7 @@ const TodoCard = (props: TTodoCard) => {
 
           return (
             <div className="todo-item" key={i}>
-              <div className="parent">
+              <div className={`parent ${type && "checked"}`}>
                 <Checkbox
                   indeterminate={indeterminate}
                   checked={type ? true : checkall()}

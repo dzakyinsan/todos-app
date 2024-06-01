@@ -40,6 +40,7 @@
 .todo-not-checked {
   height: 70vh;
   overflow: auto;
+  border: 1px solid #cdd5e0;
 
   .ant-card-body {
     padding: 5px 20px;
@@ -62,6 +63,12 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+
+      &.checked {
+        span {
+          text-decoration: line-through;
+        }
+      }
     }
 
     .child {
@@ -70,9 +77,13 @@
       padding: 10px 15px;
       margin: 10px 5px;
       display: flex;
+      justify-content: space-between;
+
+      span {
+        text-decoration: line-through;
+      }
 
       .anticon {
-        flex: 1;
         justify-content: center;
       }
     }
