@@ -36,7 +36,7 @@ const TodoContent = () => {
     initializeTodoAction(dispatch);
   }, []);
 
-  console.log({ data });
+  console.log("branch 3");
 
   return (
     <section>
